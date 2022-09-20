@@ -1,16 +1,20 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/home/home';
+import Layout from './components/Layout';
+
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home></Home>} />
-        <Route path="/login" element={<div>로그인 페이지</div>} />
-        <Route path="/users" element={<div>유저 목록 페이지</div>} />
-        <Route path="/users/:user_id" element={<div>유저 상세 페이지</div>} />
-        <Route path="/accounts" element={<div>계좌 목록 페이지</div>} />
-        <Route path="/accounts/:account_id" element={<div>계좌 상세 페이지</div>} />
-        <Route path="*" element={<div>404페이지</div>} />
+        <Route path="/" element={<div>로그인</div>} />
+
+        <Route element={<Layout />}>
+          <Route path="/login" element={<div>로그인 페이지</div>} />
+          <Route path="/users" element={<div>유저 목록 페이지</div>} />
+          <Route path="/users/:user_id" element={<div>유저 상세 페이지</div>} />
+          <Route path="/accounts" element={<div>계좌 목록 페이지</div>} />
+          <Route path="/accounts/:account_id" element={<div>계좌 상세 페이지</div>} />
+          <Route path="*" element={<div>404페이지</div>} />
+        </Route>
       </Routes>
     </Router>
   );
