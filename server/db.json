@@ -1604,6 +1604,11 @@
       "email": "newface@dco.com",
       "password": "$2a$10$oolGChp.Fcsa4Zw6lcWMVuMMe3JXJIeCxPZBNJbJYDZwItbEVsC4S",
       "id": 101
+    },
+    {
+      "email": "test@test.com",
+      "password": "$2a$10$XshHyxUAqgN623.qNo.br.Oa/K5j.M7h67pZ13zMozbGL2aIWMQ8G",
+      "id": 102
     }
   ],
   "userSetting": [

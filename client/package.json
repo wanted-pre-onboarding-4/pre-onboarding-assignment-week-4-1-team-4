@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "autoprefixer": "^10.4.11",
     "axios": "^0.27.2",
+    "http-proxy-middleware": "^2.0.6",
     "postcss": "^8.4.16",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -42,5 +43,6 @@
   },
   "devDependencies": {
     "husky": "^8.0.1"
-  }
+  },
+  "proxy": "http://localhost:4000"
 }
