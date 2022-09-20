@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { BsPerson } from 'react-icons/bs';
 import { AiOutlineLock } from 'react-icons/ai';
 import { BiLogIn } from 'react-icons/bi';
-import { useAuth } from '../../contexts/AuthProvider';
+import authStore from '../../store/AuthStore';
 
 const Login = () => {
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredPassword, setEnteredPassword] = useState('');
 
-  const {onLogin} = useAuth()
+  const {onLogin } = authStore();
 
   const changeEmail = e => {
     setEnteredEmail(e.target.value);
