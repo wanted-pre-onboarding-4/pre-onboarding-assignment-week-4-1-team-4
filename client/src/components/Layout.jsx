@@ -8,9 +8,11 @@ const Layout = () => {
   return (
     <>
       <Sider />
-      <div>
+      <div className='flex flex-col flex-1'>
         <Header />
-        <Outlet />
+        <main className="flex flex-1">
+          <Outlet />
+        </main>
         <Footer />
       </div>
     </>
