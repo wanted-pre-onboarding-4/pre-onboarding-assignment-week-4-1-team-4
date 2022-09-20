@@ -1,10 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home/Home';
+import GlobalStyle from './styles/Globalstyles';
 
 function App() {
   return (
     <Router>
+      <GlobalStyle />
       <Routes>
-        <Route path="/" element={<div>홈</div>} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<div>로그인 페이지</div>} />
         <Route path="/users" element={<div>유저 목록 페이지</div>} />
         <Route path="/users/:user_id" element={<div>유저 상세 페이지</div>} />
