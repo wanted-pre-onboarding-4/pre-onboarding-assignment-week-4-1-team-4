@@ -1,5 +1,5 @@
 function Footer() {
-  return <div className="w-screen basis-2/12 ">gdsgs</div>;
+  return <div className=" basis-2/12 ">FOOTER</div>;
 }
 
 export default Footer;

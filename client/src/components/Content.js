@@ -1,5 +1,5 @@
 function Content() {
-  return <div className="w-screen basis-8/12">gdsgs</div>;
+  return <div className=" basis-8/12">CONTENT</div>;
 }
 
 export default Content;

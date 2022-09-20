@@ -12,7 +12,8 @@ function Login() {
         email,
         password,
       });
-      const token = res.data.access_token;
+      console.log(res);
+      const token = res.data.accessToken;
       console.log('로그인 성공!');
       localStorage.setItem('userToken', token);
       document.location.href = '/home';
@@ -22,15 +23,21 @@ function Login() {
   };
 
   useEffect(() => {
-    if (isEmailValid) {
+    if (isEmailValid && isPassword) {
       setButtonAct(true);
     } else {
       setButtonAct(false);
     }
   }, [email, password]);
 
-  const isEmailValid = validateEmail(email);
+  useEffect(() => {
+    if (localStorage.getItem('userToken') !== null) {
+      document.location.href = '/home';
+    }
+  });
 
+  const isEmailValid = validateEmail(email);
+  const isPassword = password.length >= 4;
   return (
     <div className="bg-green-200 h-[500px] rounded-3xl w-[600px] mt-[200px] mx-auto ">
       <form className="space-y-6 w-[500px] mx-auto pt-10" onSubmit={submitHandler}>
