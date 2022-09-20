@@ -1,24 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<div>홈</div>} />
+        <Route path="/login" element={<div>로그인 페이지</div>} />
+        <Route path="/users" element={<div>유저 목록 페이지</div>} />
+        <Route path="/users/:user_id" element={<div>유저 상세 페이지</div>} />
+        <Route path="/accounts" element={<div>계좌 목록 페이지</div>} />
+        <Route path="/accounts/:account_id" element={<div>계좌 상세 페이지</div>} />
+        <Route path="*" element={<div>404페이지</div>} />
+      </Routes>
+    </Router>
   );
 }
 
