@@ -1,7 +1,8 @@
 import Side from './Side';
 import Header from './Header';
-import Content from './Content';
 import Footer from './Footer';
+import { Outlet } from 'react-router-dom';
+
 function Layout() {
   return (
     <div className="flex">
@@ -10,7 +11,9 @@ function Layout() {
       </div>
       <div className="w-full relative flex flex-col ">
         <Header />
-        <Content />
+        <div className="basis-8/12">
+          <Outlet />
+        </div>
         <Footer />
       </div>
     </div>
