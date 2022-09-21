@@ -16,7 +16,7 @@ const Sider = () => {
   const { account_id } = useParams();
 
   return (
-    <div className="w-52 bg-blue-900">
+    <div className="w-52 h-screen  fixed left-0 bottom-0 bg-blue-900 ">
       <h1 className="text-3xl font-extrabold text-center text-white px-6 py-4">PREFACE</h1>
       <ul>
         <li className="flex items-center px-6 space-x-2 py-4 text-gray-300">
