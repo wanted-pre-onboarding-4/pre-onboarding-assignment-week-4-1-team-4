@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../../components/Header';
-// import Sider from '../../components/Sider';
-import Sider2 from '../../components/Sider2';
+import Sider from '../../components/Sider';
+import Footer from '../../components/Footer';
 const Users = () => {
   return (
     <Wrap>
-      {/* <Sider /> */}
-      <Sider2 />
+      <Sider />
       <UserWrap>
         <Header />
+        <Footer />
       </UserWrap>
     </Wrap>
   );
@@ -17,7 +17,7 @@ const Users = () => {
 
 const Wrap = styled.div`
   display: flex;
-  background-color: beige;
+  background-color: ${props => props.theme.lightGrey};
 `;
 const UserWrap = styled.div``;
 export default Users;
