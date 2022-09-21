@@ -10,7 +10,7 @@ function Side() {
     { name: 'Home', path: '/home' },
     { name: 'Users', path: '/users' },
     { name: 'Accounts', path: '/accounts' },
-    { name: '설정', path: '/setting' },
+    { name: '설정', path: '/s' },
   ];
   const pathName = useLocation().pathname;
   return (
