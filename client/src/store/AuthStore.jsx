@@ -7,11 +7,12 @@ const authStore = create()(
     persist(
       set => ({
         token: null,
+        id: null,
         onLogin: async (email, password) => {
           const res = await login(email, password);
-          set({ token: res.data.accessToken });
+          set({ token: res.data.accessToken, id: res.data.user.id });
         },
-        onLogout: () => set({ token: null }),
+        onLogout: () => set({ token: null, id: null }),
       }),
       { name: 'token' }
     )
