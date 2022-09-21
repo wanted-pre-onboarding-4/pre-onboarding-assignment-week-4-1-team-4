@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <PageHeader
       className="site-page-header"
-      style={{ width: '85vw', border: '1px solid rgb(235, 237, 240)' }}
+      style={{ width: '100%' }}
       ghost={false}
       onBack={() => window.history.back()}
       title="Title"
