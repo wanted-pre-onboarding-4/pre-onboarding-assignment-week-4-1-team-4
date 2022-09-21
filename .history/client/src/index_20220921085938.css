@@ -1,0 +1,14 @@
+#root{
+  display: flex;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a.active {
+  @apply bg-blue-400 text-white;
+}
+a.active svg{
+  @apply fill-white;
+}

@@ -1,0 +1,83 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+import brokers from '../../../data/brokers.json';
+import accountStatus from '../../../data/accountStatus.json';
+import { getUser } from '../../../services/account';
+import { useState } from 'react';
+
+const Account = ({ accounts }) => {
+  const [data, setData] = useState([])
+  const getUserData = async(id) =>{
+    const data =await getUser(1)
+    setData(data)
+  }
+  console.log(data)
+  return (
+    <>
+      {accounts.map(account => {
+        const rate = ((+account.assets - +account.payments) / (+account.payments * 100))
+          .toString()
+          .slice(0, 7);
+        // const userData = async()=> await getUserData(account.user_id)
+        // console.log(userData())
+        return (
+          <tbody
+            className="flex items-center justify-between w-full bg-white py-2 text-sm"
+            key={account.uuid}
+          >
+            <tr className="justify-center flex flex-1">
+              <td>{brokers[account.broker_id]}</td>
+            </tr>
+            <tr className="justify-center flex flex-1">
+              <td>
+                {account.number
+                  .split('')
+                  .map((char, idx) => (idx > 1 && idx < account.number.length - 2 ? '*' : char))
+                  .join('')}
+              </td>
+            </tr>
+            <tr className="justify-center flex flex-1">
+              <td>
+                <Link to={`/users/${account.user_id}`}>{account.name}</Link>
+              </td>
+            </tr>
+            <tr className="justify-center flex flex-1">
+              <td>
+                {Object.keys(accountStatus).find(key => accountStatus[key] === account.status)}
+              </td>
+            </tr>
+            <tr className="justify-center flex flex-1">
+              <td>{account.name}</td>
+            </tr>
+            <tr className="justify-center flex flex-1">
+              <td>{(+account.assets).toLocaleString('ko-KR')}</td>
+            </tr>
+            <tr className="justify-center flex flex-1">
+              <td>{(+account.payments).toLocaleString('ko-KR')}</td>
+            </tr>
+            <tr className="justify-center flex flex-1">
+              <td
+                className={rate > 0 ? 'text-red-600' : rate === 0 ? 'text-black' : 'text-blue-600'}
+              >
+                {rate}%
+              </td>
+            </tr>
+            <tr className="justify-center flex flex-1">
+              <td
+                className={account.is_active ? 'text-blue-600 font-bold' : 'text-red-600 font-bold'}
+              >
+                {account.is_active ? '활성화' : '비활성화'}
+              </td>
+            </tr>
+            <tr className="justify-center flex flex-1">
+              <td>{account.created_at.slice(0, 10)}</td>
+            </tr>
+          </tbody>
+        );
+      })}
+    </>
+  );
+};
+
+export default Account;
