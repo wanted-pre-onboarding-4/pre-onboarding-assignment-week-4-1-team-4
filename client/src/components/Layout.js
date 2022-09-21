@@ -11,7 +11,7 @@ function Layout() {
       </div>
       <div className="w-full relative flex flex-col ">
         <Header />
-        <div className="basis-8/12">
+        <div className="basis-9/12">
           <Outlet />
         </div>
         <Footer />

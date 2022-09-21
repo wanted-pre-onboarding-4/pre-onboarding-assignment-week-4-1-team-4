@@ -1,5 +1,7 @@
 function Footer() {
-  return <div className=" basis-2/12 ">FOOTER</div>;
+  return (
+    <div className="text-center font-bold basis-1/12">Copyright © December and Company Inc.</div>
+  );
 }
 
 export default Footer;

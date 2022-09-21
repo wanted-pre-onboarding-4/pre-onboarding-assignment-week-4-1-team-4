@@ -1,10 +1,15 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import SidebarItem from './SidebarItem';
 function Side() {
+  function ClickLogOut() {
+    alert('로그아웃 되었습니다.');
+    localStorage.removeItem('userToken');
+    document.location.href = '/';
+  }
   const menus = [
     { name: 'Home', path: '/home' },
-    { name: '나만의 맛집 리스트', path: '/account' },
-    { name: '즐겨찾기 한 맛집 리스트', path: '/likedlist' },
+    { name: 'Users', path: '/users' },
+    { name: 'Accounts', path: '/accounts' },
     { name: '설정', path: '/setting' },
   ];
   const pathName = useLocation().pathname;
@@ -22,16 +27,21 @@ function Side() {
         {menus.map((menu, index) => {
           return (
             <NavLink
-              exact
               style={{ color: 'gray', textDecoration: 'none' }}
               to={menu.path}
               key={index}
-              activeStyle={{ color: 'yellow' }}
+              activestyle={{ color: 'yellow' }}
             >
               <SidebarItem menu={menu} isActive={pathName === menu.path ? true : false} />
             </NavLink>
           );
         })}
+        <button
+          onClick={ClickLogOut}
+          className="hover:bg-yellow-200 text-center rounded-3xl text-gray-700 my-2"
+        >
+          로그아웃
+        </button>
       </div>
     </div>
   );
