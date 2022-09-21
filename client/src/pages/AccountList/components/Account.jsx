@@ -1,11 +1,16 @@
 import React from 'react';
+import { useQuery } from 'react-query';
+import api from '../../../services/api';
+import { broker } from '../../../services/data';
 
-const Account = () => {
+const Account = ({ account }) => {
+  const { data } = useQuery(`/users/${account.user_id}`, api.getUserInfo(account.user_id));
+  console.log('userData', account);
   return (
     <div className="relative border-2 w-[50vw] p-6 rounded-3xl ">
       <h1 className="border-b-2 pb-3 flex justify-between">
-        <span>깃허브 증권</span>
-        <span>Saving Account</span>
+        <span>{broker[account.broker_id]}</span>
+        <span>{account.name}</span>
       </h1>
       <div className="flex  pt-6 justify-between">
         <div className="w-1/2">
@@ -21,7 +26,7 @@ const Account = () => {
           </div>
           <div className=" pt-8">
             <div>
-              계좌개설일: <span>2022-09-20</span>
+              계좌개설일: <span>{account.created_at.split('T')[0]}</span>
             </div>
             <div>
               계좌 상태: <span>해지</span>
@@ -31,10 +36,10 @@ const Account = () => {
         </div>
         <div className="space-y-2 w-1/2 ml-10 mt-20">
           <div className="text-end">
-            평가 금액: <span>100000000원</span>
+            평가 금액: <span>{Number(account.assets).toLocaleString('en')} $</span>
           </div>
           <div className="text-end">
-            입금 금액: <span>900000000원</span>
+            입금 금액: <span>{Number(account.payments).toLocaleString('en')} $</span>
           </div>
         </div>
       </div>

@@ -12,7 +12,10 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<div className="font-bold">홈</div>} />
-        <Route path="/login" element={user.id ? <Navigate to="/accounts" /> : <Login />} />
+        <Route
+          path="/login"
+          element={user.id ? <Navigate to="/accounts?_page=1&_limit=20" /> : <Login />}
+        />
         <Route element={!user.id ? <Navigate to="/login" /> : <Layout />}>
           <Route path="/users" element={<div>유저 목록 페이지</div>} />
           <Route path="/users/:user_id" element={<div>유저 상세 페이지</div>} />

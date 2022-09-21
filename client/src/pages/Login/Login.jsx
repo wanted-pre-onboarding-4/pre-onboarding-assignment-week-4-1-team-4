@@ -35,7 +35,7 @@ const Login = () => {
     const { accessToken, user } = data.data;
     token.set('adminToken', accessToken);
     setUserInfo(user);
-    navigate('/accounts');
+    navigate('/accounts?_page=1&_limit=4');
   }, [isSuccess]);
 
   useEffect(() => {

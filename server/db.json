@@ -1604,6 +1604,11 @@
       "email": "test2022@naver.com",
       "password": "$2a$10$rwRDhMSSj88kunr5n/Fb2eRAHN.pk4SEHTxkCN8WkgU8m3ths3vuK",
       "id": 101
+    },
+    {
+      "email": "test2023@naver.com",
+      "password": "$2a$10$gKQho0LcnFgc4bFOdTW1Cepcey.nAOkKqpZjtoYCM/eplnhwpR5y6",
+      "id": 102
     }
   ],
   "userSetting": [
