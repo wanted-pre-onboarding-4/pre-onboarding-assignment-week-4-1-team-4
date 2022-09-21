@@ -2,7 +2,7 @@ import React from 'react';
 
 const Account = () => {
   return (
-    <div className="border-2 w-[50vw] p-6 rounded-3xl ">
+    <div className="relative border-2 w-[50vw] p-6 rounded-3xl ">
       <h1 className="border-b-2 pb-3 flex justify-between">
         <span>깃허브 증권</span>
         <span>Saving Account</span>
@@ -38,6 +38,7 @@ const Account = () => {
           </div>
         </div>
       </div>
+      <div className="absolute top-0 rounded-l-3xl left-0 h-full bg-slate-300 w-24 -z-10"></div>
     </div>
   );
 };
