@@ -1,31 +1,41 @@
 import axios from 'axios';
+import { Navigate } from 'react-router-dom';
 
 const instance = axios.create({
   baseURL: '',
-  timeout: 2000
+  timeout: 2000,
 });
 
 instance.interceptors.request.use(
   config => {
-    const {state : {token}} = JSON.parse(localStorage.getItem('token'))
+    const {
+      state: { token },
+    } = JSON.parse(localStorage.getItem('token'));
     if (token) {
-      config.headers.Authorization = 'Bearer ' + token
+      config.headers.Authorization = 'Bearer ' + token;
     }
-    return config
+
+    return config;
   },
   error => {
-    Promise.reject(error)
+    Promise.reject(error);
   }
-)
+);
 
 instance.interceptors.response.use(
   res => {
     return res;
   },
-  err => {
+  error => {
+    if (error.response.status === 401) {
+      window.alert('세션 만료');
+      localStorage.clear();
+      Navigate('/login');
+      return;
+    }
     // error 헨들링 필요
-    window.alert(err)
+    Promise.reject(error);
   }
 );
 
-export default instance
+export default instance;
