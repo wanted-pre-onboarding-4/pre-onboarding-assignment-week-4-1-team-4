@@ -1,0 +1,13 @@
+#root{
+  display: flex;
+  height:100vh;
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a.active {
+  @apply bg-black text-white;
+}
