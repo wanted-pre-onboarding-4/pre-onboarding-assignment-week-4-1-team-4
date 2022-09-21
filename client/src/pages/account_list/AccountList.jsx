@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import Search from '../../components/Search';
 import { getAccounts } from '../../services/account';
-
+import { useSearchParams, useLocation } from 'react-router-dom';
+import brokers from '../../data/brokers.json';
 import Account from './components/Account';
 import Select from '../../components/Select';
-
+import accountStatus from '../../data/accountStatus.json';
 const AccountList = () => {
   const [accounts, setAccounts] = useState([]);
-
+  const location = useLocation();
+  const query = useSearchParams();
+  console.log(query);
+  console.log(location.search);
   useEffect(() => {
     const getAccountList = async () => {
-      const res = await getAccounts(1, 20);
+      const res = await getAccounts(location.search);
       setAccounts(res.data);
     };
     getAccountList();
@@ -18,12 +22,12 @@ const AccountList = () => {
 
   return (
     <>
-      <div className="px-4 py-8 w-screen bg-gray-100">
+      <div className="px-4 py-8 w-screen bg-gray-100 min-w-[1600px] ">
         <div className="flex items-center gap-x-10 mb-4">
           <div className="space-x-2">
-            <Select name="증권사" />
-            <Select name="계좌 활성화" />
-            <Select name="계좌 상태" />
+            <Select name="증권사" options={brokers} />
+            <Select name="계좌 활성화" options={{ true: '활성화', false: '비활성화' }} />
+            <Select name="계좌 상태" options={accountStatus} />
           </div>
           <Search />
         </div>

@@ -29,7 +29,7 @@ const Sider = () => {
           onClick={() => setOpenSubCategory(false)}
         >
           <NavLink
-            to="/accounts"
+            to="/accounts/"
             end
             className="flex items-center px-6 space-x-2 py-4 text-gray-300 justify-between cursor-pointer"
           >
