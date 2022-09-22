@@ -12,19 +12,18 @@ const AccountList = () => {
   const [brokerId, setBrokerId] = useState();
   const [isActive, setIsActive] = useState(true);
   const [limit, setLimit] = useState(10);
+  const [status, setStatus] = useState();
   const location = useLocation();
   console.log(location.search);
   useEffect(() => {
     const getAccountList = async () => {
-      console.log(page);
       const res = await getAccounts(location.search);
       setAccounts(res.data);
       console.log(res);
-      console.log(res.headers['x-total-count']);
     };
     getAccountList();
     setPage(1);
-  }, [limit, isActive, brokerId]);
+  }, [limit, isActive, brokerId, status, page]);
 
   return (
     <>
@@ -34,16 +33,16 @@ const AccountList = () => {
             <Select name="증권사" options={brokers} index={0} setFunction={setBrokerId} />
             <Select
               name="계좌 활성화"
-              options={{ true: '활성화', false: '비활성화' }}
+              options={{ 0: '전체', true: '활성화', false: '비활성화' }}
               setFunction={setIsActive}
               index={1}
             />
-            <Select name="계좌 상태" options={accountStatus} />
+            <Select name="계좌 상태" options={accountStatus} index={2} setFunction={setStatus} />
             <Select
               name="페이지 당 게시물"
               options={{ 0: '5', 1: '10', 2: '15', 3: '20' }}
               setFunction={setLimit}
-              index={2}
+              index={3}
             />
           </div>
           <Search />
