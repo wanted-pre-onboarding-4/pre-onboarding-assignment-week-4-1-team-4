@@ -15,12 +15,12 @@ const AccountList = () => {
   const [status, setStatus] = useState();
   const location = useLocation();
   console.log(location.search);
+  const getAccountList = async () => {
+    const res = await getAccounts(location.search);
+    setAccounts(res.data);
+    console.log(res);
+  };
   useEffect(() => {
-    const getAccountList = async () => {
-      const res = await getAccounts(location.search);
-      setAccounts(res.data);
-      console.log(res);
-    };
     getAccountList();
     setPage(1);
   }, [limit, isActive, brokerId, status, page]);
@@ -45,7 +45,7 @@ const AccountList = () => {
               index={3}
             />
           </div>
-          <Search />
+          <Search getAccountList={getAccountList} />
         </div>
         <table className="bg-gray-200 w-full border-solid border-[1px]">
           <thead className="flex w-full px-2 py-4 ">
