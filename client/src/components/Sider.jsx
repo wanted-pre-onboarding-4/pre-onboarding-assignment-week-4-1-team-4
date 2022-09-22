@@ -16,10 +16,10 @@ const Sider = () => {
   const { account_id } = useParams();
 
   return (
-    <div className="w-52 h-screen  fixed left-0 bottom-0 bg-blue-900 ">
-      <h1 className="text-3xl font-extrabold text-center text-white px-6 py-4">PREFACE</h1>
+    <div className="w-52 h-screen  fixed left-0 bottom-0 bg-neutral-800 border-t-4 border-blue-600">
+      <h1 className="text-3xl font-extrabold text-center text-white px-5 py-4 pr-7">PREFACE</h1>
       <ul>
-        <li className="flex items-center px-6 space-x-2 py-4 text-gray-300">
+        <li className="flex items-center px-8 space-x-2 py-4 text-gray-300  hover:text-white ease-in duration-100">
           <AiOutlineDashboard />
           <span>대시보드</span>
         </li>
@@ -31,7 +31,7 @@ const Sider = () => {
           <NavLink
             to="/accounts"
             end
-            className="flex items-center px-6 space-x-2 py-4 text-gray-300 justify-between cursor-pointer"
+            className="flex items-center px-8 space-x-2 py-4 text-gray-300 justify-between cursor-pointer hover:text-white ease-in duration-100 "
           >
             <div className="flex items-center justify-center space-x-2">
               <MdOutlineAccountBalance />
@@ -48,7 +48,7 @@ const Sider = () => {
           {(pathname === `/accounts/${account_id}` || openSubCategory) && (
             <NavLink
               to="/accounts/:id"
-              className="flex items-center justify-center px-6 space-x-2 py-4 text-gray-300"
+              className="flex items-center px-10 space-x-2 py-3 text-gray-300 hover:text-white ease-in duration-100 bg-neutral-900"
               onClick={() => setOpenSubCategory(true)}
             >
               <IoMdAnalytics />
@@ -58,13 +58,19 @@ const Sider = () => {
         </li>
 
         <li>
-          <NavLink to="/users" className="flex items-center px-6 space-x-2 py-4 text-gray-300">
+          <NavLink
+            to="/users"
+            className="flex items-center px-8 space-x-2 py-4 text-gray-300  hover:text-white ease-in duration-100"
+          >
             <BsPerson />
             <span>사용자</span>
           </NavLink>
         </li>
       </ul>
-      <button onClick={onLogout} className="flex items-center px-6 space-x-2 py-4 text-gray-300">
+      <button
+        onClick={onLogout}
+        className="flex items-center px-8 space-x-2 py-4 text-gray-300  hover:text-white ease-linear duration-200"
+      >
         <IoMdLogOut />
         <span>로그아웃</span>
       </button>
