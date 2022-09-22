@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BiSearchAlt } from 'react-icons/bi';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { joinarray } from '../utils/makeLink';
 const Search = ({ getAccountList }) => {
   const [enteredSearch, setEnteredSearch] = useState('');
   const navigate = useNavigate();
@@ -8,8 +9,22 @@ const Search = ({ getAccountList }) => {
 
   const searchHandler = e => {
     e.preventDefault();
-    navigate(`${location.search}?q=${enteredSearch}`);
-    getAccountList();
+    if (location.search.includes('q=')) {
+      const returnUrl = location.search
+        .split('q=')[1]
+        .split('&')
+        .filter(data => data !== '');
+      returnUrl.shift();
+      const temp = joinarray(returnUrl);
+      navigate(
+        `${
+          location.search.slice(0, location.search.indexOf('q=') + 1) + '=' + enteredSearch + temp
+        }`
+      );
+    } else {
+      navigate(`${location.search}?q=${enteredSearch}`);
+    }
+    // getAccountList();
   };
 
   return (
