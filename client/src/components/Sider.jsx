@@ -39,16 +39,16 @@ const Sider = () => {
             </div>
             <div>
               {openSubCategory ? (
-                <MdKeyboardArrowUp className="fill-gray-300" />
+                <MdKeyboardArrowUp className="fill-gray-300 text-xl" />
               ) : (
-                <MdKeyboardArrowDown className="fill-gray-300" />
+                <MdKeyboardArrowDown className="fill-gray-300 text-xl" />
               )}
             </div>
           </NavLink>
           {(pathname === `/accounts/${account_id}` || openSubCategory) && (
             <NavLink
               to="/accounts/:id"
-              className="flex items-center px-10 space-x-2 py-3 text-gray-300 hover:text-white ease-in duration-100 bg-neutral-900"
+              className="flex items-center px-10 space-x-2 py-3 text-gray-300 hover:text-white ease-in duration-100 "
               onClick={() => setOpenSubCategory(true)}
             >
               <IoMdAnalytics />
