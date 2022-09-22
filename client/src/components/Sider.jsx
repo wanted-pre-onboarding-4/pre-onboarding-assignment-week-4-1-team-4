@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useCallback, useContext } from 'react';
+import { UserContext } from '../contexts/user';
+import token from '../utils/token';
 
 const Sider = () => {
+  const { setUserInfo } = useContext(UserContext);
+
+  const logOutClick = useCallback(() => {
+    setUserInfo({ email: '', id: null });
+    token.remove();
+  }, []);
+
   return (
     <div className="w-48 h-screen flex flex-col fixed left-0">
       <h1 className="flex-1 flex justify-center items-center font-bold">Four</h1>
@@ -72,8 +81,8 @@ const Sider = () => {
               </svg>
             </div>
           </ul>
-          <li>
-            <div className="flex">
+          <li className="cursor-pointer">
+            <div onClick={logOutClick} className="flex">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

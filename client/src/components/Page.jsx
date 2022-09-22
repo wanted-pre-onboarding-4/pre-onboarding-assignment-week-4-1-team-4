@@ -26,7 +26,7 @@ const Page = ({ length, curNumber }) => {
   }, []);
 
   return (
-    <div className="flex">
+    <div className="flex  justify-center my-5">
       <button onClick={onLeftClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +48,7 @@ const Page = ({ length, curNumber }) => {
               key={button}
               onClick={onNumberClick}
               className={cls(
-                'w-10 h-10  flex justify-center items-center',
+                'w-10 h-10 cursor-pointer  flex justify-center items-center',
                 index + 1 + 5 * (showPages - 1) === curNumber
                   ? 'bg-slate-500 rounded-full text-white'
                   : ''
