@@ -1,33 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import Search from '../../components/Search';
 import { getAccounts } from '../../services/account';
-import { useSearchParams, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import brokers from '../../data/brokers.json';
 import Account from './components/Account';
 import Select from '../../components/Select';
 import accountStatus from '../../data/accountStatus.json';
 const AccountList = () => {
   const [accounts, setAccounts] = useState([]);
+  const [page, setPage] = useState(1);
+  const [brokerId, setBrokerId] = useState();
+  const [isActive, setIsActive] = useState(true);
+  const [limit, setLimit] = useState(10);
   const location = useLocation();
-  const query = useSearchParams();
-  console.log(query);
   console.log(location.search);
   useEffect(() => {
     const getAccountList = async () => {
+      console.log(page);
       const res = await getAccounts(location.search);
       setAccounts(res.data);
+      console.log(res);
+      console.log(res.headers['x-total-count']);
     };
     getAccountList();
-  }, []);
+    setPage(1);
+  }, [limit, isActive, brokerId]);
 
   return (
     <>
       <div className="px-4 py-8 w-screen bg-gray-100 min-w-[1600px] ">
         <div className="flex items-center gap-x-10 mb-4">
           <div className="space-x-2">
-            <Select name="증권사" options={brokers} />
-            <Select name="계좌 활성화" options={{ true: '활성화', false: '비활성화' }} />
+            <Select name="증권사" options={brokers} index={0} setFunction={setBrokerId} />
+            <Select
+              name="계좌 활성화"
+              options={{ true: '활성화', false: '비활성화' }}
+              setFunction={setIsActive}
+              index={1}
+            />
             <Select name="계좌 상태" options={accountStatus} />
+            <Select
+              name="페이지 당 게시물"
+              options={{ 0: '5', 1: '10', 2: '15', 3: '20' }}
+              setFunction={setLimit}
+              index={2}
+            />
           </div>
           <Search />
         </div>
