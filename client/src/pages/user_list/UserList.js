@@ -16,7 +16,7 @@ function UserList() {
 
   return (
     <>
-      <div className="px-4 py-8 w-screen bg-gray-100 min-w-[1600px] ">
+      <div className="px-4 py-8 w-screen bg-gray-100 min-w-[1500px] ">
         <table className="bg-gray-200 w-full border-solid border-[1px]">
           <thead className="flex w-full px-2 py-4 ">
             <tr className="flex justify-between w-full">

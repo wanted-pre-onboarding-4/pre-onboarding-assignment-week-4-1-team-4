@@ -38,10 +38,10 @@ const Header = () => {
           onClick={goToPrev}
         />
         <span className="self-center">{pathname === '/users' && '유저 목록 페이지'}</span>
-        <sapn className="self-center">
+        <span className="self-center">
           {' '}
           {/\/(users)\/[\d]+/g.exec(pathname) && '유저 상세 페이지'}
-        </sapn>
+        </span>
         <span className="self-center">{pathname === '/accounts' && '계좌 목록 페이지'}</span>
         <span className="self-center">
           {/\/(accounts)\/[\d]+/g.exec(pathname) && '계좌 상세 페이지'}

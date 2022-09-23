@@ -10,7 +10,7 @@ const Layout = () => {
       <Sider />
       <div className="flex flex-col flex-1 ml-52">
         <Header />
-        <div className="flex flex-1 ">
+        <div className="flex flex-1 max-w-[1700px] ">
           <Outlet />
         </div>
         <Footer />

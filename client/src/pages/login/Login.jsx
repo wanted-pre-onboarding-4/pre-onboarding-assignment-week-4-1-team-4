@@ -46,7 +46,7 @@ const Login = () => {
               value={enteredEmail}
               onChange={changeEmail}
               placeholder="이메일을 입력하세요"
-              class="mt-1 block w-full px-10 py-3  bg-white  border-solid border-[1px]  rounded text-sm shadow-sm placeholder-slate-400
+              className="mt-1 block w-full px-10 py-3  bg-white  border-solid border-[1px]  rounded text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-blue-500 focus:ring-1"
             />
 
@@ -58,7 +58,7 @@ const Login = () => {
               value={enteredPassword}
               onChange={changePassword}
               placeholder="비밀번호를 입력하세요"
-              class="mt-1 block w-full px-10 py-3 bg-white  border-solid border-[1px]  rounded text-sm shadow-sm placeholder-slate-400
+              className="mt-1 block w-full px-10 py-3 bg-white  border-solid border-[1px]  rounded text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-blue-500 focus:ring-1"
             />
           </div>
