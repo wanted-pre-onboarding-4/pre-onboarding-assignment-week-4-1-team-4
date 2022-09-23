@@ -16,10 +16,7 @@ export function splitUrl(url, index) {
     .split(FilterKey[index])[1]
     .split('&')
     .filter(data => data !== '');
-  console.log(returnUrl);
-
   returnUrl.shift();
-  console.log(returnUrl);
 
   return returnUrl;
 }

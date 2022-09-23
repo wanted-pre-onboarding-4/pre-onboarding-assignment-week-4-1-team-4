@@ -1,16 +1,17 @@
 import React from 'react';
 import { CreateLink } from '../utils/makeLink';
 import { useNavigate, useLocation } from 'react-router-dom';
-
+import { useState } from 'react';
+import { FilterKey } from '../utils/FilterKey';
 const Select = ({ name, options, setFunction, index, setPage }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const params = new URLSearchParams(location.search);
   const PageReturn = link => {
-    let tempLink = link;
-    console.log(tempLink.split('&')[0].split('=')[1]);
-    tempLink.split('&')[0].split('=')[1] = 1;
-    console.log(tempLink.split('&')[0].split('=')[1]);
+    const params = new URLSearchParams(link || location.search);
+    console.log(params.toString());
+    console.log(params.set('_page', 1));
+    console.log(params.toString());
+    navigate('?' + params.toString());
   };
 
   const optionClickHandler = e => {
