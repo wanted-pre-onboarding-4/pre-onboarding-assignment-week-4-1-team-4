@@ -5,7 +5,6 @@ import { BsPerson } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
 import authStore from '../store/AuthStore';
 
-// import { useAuth } from '../contexts/AuthProvider';
 const Sider = () => {
   const [, setOpenSubCategory] = useState(false);
 
