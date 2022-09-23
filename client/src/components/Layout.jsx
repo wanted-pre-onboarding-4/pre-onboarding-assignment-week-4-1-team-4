@@ -8,11 +8,11 @@ const Layout = () => {
   return (
     <>
       <Sider />
-      <div className='flex flex-col flex-1 ml-52'>
+      <div className="flex flex-col flex-1 ml-52">
         <Header />
-        <main className="flex flex-1">
+        <div className="flex flex-1 ">
           <Outlet />
-        </main>
+        </div>
         <Footer />
       </div>
     </>
