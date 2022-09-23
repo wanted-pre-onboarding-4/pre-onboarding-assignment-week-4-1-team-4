@@ -2,6 +2,7 @@ import React from 'react';
 import { CreateLink } from '../utils/makeLink';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+
 const Select = ({ name, options, setFunction, index }) => {
   const location = useLocation();
   const navigate = useNavigate();
