@@ -1,4 +1,3 @@
-// import brokers from '../../data/brokers.json';
 import { getDate, getDateAndTime, maskingPhoneNumber } from '../../../utils/funcs';
 export default function UserInfo({ userData }) {
   const {

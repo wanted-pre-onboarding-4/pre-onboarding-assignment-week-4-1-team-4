@@ -29,7 +29,7 @@ export default function User() {
 
   useEffect(() => {
     const getUserSettingDetail = async () => {
-      const res = await getUserSetting('');
+      const res = await getUserSetting();
       const settings = res.data.filter(setting => setting.uuid === user.uuid)[0];
       setUserSetting({
         allow_invest_push: settings?.allow_invest_push,
