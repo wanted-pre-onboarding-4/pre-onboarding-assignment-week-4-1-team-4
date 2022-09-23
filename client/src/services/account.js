@@ -1,6 +1,7 @@
 import http from '../utils/http-common';
 
 export const getAccounts = url => {
+  console.log(`/accounts${url}`);
   return http.get(`/accounts${url}`);
 };
 export const getUserAccounts = id => {
@@ -9,12 +10,11 @@ export const getUserAccounts = id => {
 
 export const getUserSetting = () => {
   return http.get(`/userSetting`);
-  }
-  
+};
+
 export const getUsers = () => {
   return http.get(`/users`);
 };
-
 
 export const getUser = userId => {
   return http.get(`/users/${userId}`);
@@ -23,4 +23,3 @@ export const getUser = userId => {
 export const getUserByURL = url => {
   return http.get(`/users${url}`);
 };
-
