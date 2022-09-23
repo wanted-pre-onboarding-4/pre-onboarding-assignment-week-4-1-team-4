@@ -1,4 +1,4 @@
-import { getDate, getDateAndTime, maskingPhoneNumber } from '../../../utils/funcs';
+import { getDate, getDateAndTime, maskingPhoneNumber, getFullAddress } from '../../../utils/funcs';
 export default function UserInfo({ userData }) {
   const {
     photo,
@@ -43,10 +43,7 @@ export default function UserInfo({ userData }) {
 
               <tr>
                 <th className={`${style.th}`}>주소</th>
-                <td className={`${style.td}`}>
-                  {address}
-                  {detail_address}
-                </td>
+                <td className={`${style.td}`}>{getFullAddress(address, detail_address)}</td>
                 <th className={`${style.th}`}>이메일</th>
                 <td className={`${style.td}`}>{email}</td>
                 <th className={`${style.th}`}>핸드폰</th>
