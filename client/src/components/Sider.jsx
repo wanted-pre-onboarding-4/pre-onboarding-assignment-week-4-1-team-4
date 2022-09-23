@@ -20,7 +20,7 @@ const Sider = () => {
           onClick={() => setOpenSubCategory(false)}
         >
           <NavLink
-            to="/accounts"
+            to={'/accounts?_page=1&_limit=10'}
             end
             className="flex items-center px-8 space-x-2 py-4 text-gray-300 justify-between cursor-pointer hover:text-white ease-in duration-100 "
           >
@@ -32,8 +32,8 @@ const Sider = () => {
         </li>
         <li>
           <NavLink
-            to="/users"
-            className="flex items-center px-8 space-x-2 py-4 text-gray-300  hover:text-white ease-in duration-100"
+            to={`/users?_page=1&_limit=10`}
+            className="flex items-center px-6 space-x-2 py-4 text-gray-300"
           >
             <BsPerson />
             <span>사용자</span>
