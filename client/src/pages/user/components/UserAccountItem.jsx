@@ -1,6 +1,6 @@
 import brokers from '../../../data/brokers.json';
 import accountStatus from '../../../data/accountStatus.json';
-import { getDateAndTime, getKeyByValue, maskingAccount } from '../../../utils/funcs';
+import { getDateAndTime, maskingAccount } from '../../../utils/funcs';
 import { style } from './UserAccountList';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,7 +18,7 @@ export default function UserAccountItem({ account }) {
       >
         {maskingAccount(number)}
       </td>
-      <td className={`${style.td}`}>{getKeyByValue(accountStatus, status)}</td>
+      <td className={`${style.td}`}>{accountStatus[status]}</td>
       <td className={`${style.td}`}>{name}</td>
       <td className={`${style.td}`}>{Number(assets).toLocaleString()}</td>
       <td className={`${style.td}`}>{Number(payments).toLocaleString()}</td>
