@@ -44,8 +44,19 @@ export const maskingAccount = str => {
   if (str) {
     let maskingStr;
     str = str.toString();
-    maskingStr = str.split('').map((el, idx) => (idx < 2 || idx > str.length - 3 ? el : '*'));
+    maskingStr = str
+      .split('')
+      .map((el, idx) => (idx < 2 || idx > str.length - 3 ? el : '*'))
+      .join('');
     return maskingStr;
+  }
+};
+
+export const getAccountFormat = (account, format) => {
+  if (account && format) {
+    let accArr = account.split('');
+    format.split('').filter((el, index) => el === '-' && accArr.splice(index, 0, '-'));
+    return accArr.join('');
   }
 };
 
