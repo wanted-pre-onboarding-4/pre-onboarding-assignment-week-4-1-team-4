@@ -1,55 +1,32 @@
 import React, { useState } from 'react';
 import { BiSearchAlt } from 'react-icons/bi';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { joinarray } from '../utils/makeLink';
 import { CreateLink } from '../utils/makeLink';
 
-const Search = ({ getAccountList }) => {
-  const [enteredSearch, setEnteredSearch] = useState('');
+const Search = ({ search, setSearch }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const searchHandler = e => {
-    e.preventDefault();
-    CreateLink(e.target.value, location, navigate);
-
-    if (location.search.includes('q=')) {
-      const returnUrl = location.search
-        .split('q=')[1]
-        .split('&')
-        .filter(data => data !== '');
-      returnUrl.shift();
-      const temp = joinarray(returnUrl);
-      navigate(
-        `${
-          location.search.slice(0, location.search.indexOf('q=') + 1) + '=' + enteredSearch + temp
-        }`
-      );
-    } else {
-      navigate(`${location.search}?q=${enteredSearch}`);
-    }
-    getAccountList();
+    console.log(e);
+    CreateLink(search, 5, location, navigate);
   };
 
   return (
-    <form
-      action=""
-      method="get"
-      className="flex items-center rounded-md bg-white"
-      onSubmit={searchHandler}
-    >
+    <form action="" method="get" className="flex items-center rounded-md bg-white">
       <label className="flex items-center px-2">
         <BiSearchAlt className="fill-gray-500" />
         <input
           type="text"
-          value={enteredSearch}
-          onChange={e => setEnteredSearch(e.target.value)}
+          value={search}
+          onChange={e => setSearch(e.target.value)}
           className="bg-transparent outline-none ml-2"
         />
       </label>
       <button
-        disabled={!enteredSearch}
+        disabled={!search}
         className="bg-blue-500 px-2 py-1 rounded-tr-md rounded-br-md text-white disabled:bg-gray-300"
+        onClick={setSearch}
       >
         검색
       </button>

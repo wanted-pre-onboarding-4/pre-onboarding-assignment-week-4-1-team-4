@@ -15,19 +15,22 @@ const AccountList = () => {
   const [limit, setLimit] = useState(10);
   const [status, setStatus] = useState();
   const [total, setTotal] = useState();
-  const [url, setUrl] = useState();
+  const [search, setSearch] = useState();
   const location = useLocation();
 
   const getAccountList = async () => {
-    console.log(url, location.search);
+    console.log(location.search);
     const res = await getAccounts(location.search);
     setAccounts(res.data);
+    console.log(res.data);
+    console.log(res.headers['x-total-count']);
+
     setTotal(res.headers['x-total-count']);
   };
   useEffect(() => {
     getAccountList();
     console.log('실행');
-  }, [limit, isActive, brokerId, status, page, url]);
+  }, [limit, isActive, brokerId, status, page, search]);
 
   return (
     <>
@@ -63,7 +66,12 @@ const AccountList = () => {
               setPage={setPage}
             />
           </div>
-          <Search getAccountList={getAccountList} setPage={setPage} />
+          <Search
+            getAccountList={getAccountList}
+            setPage={setPage}
+            setSearch={setSearch}
+            search={search}
+          />
         </div>
         <table className="bg-gray-200 w-full border-solid border-[1px]">
           <thead className="flex w-full px-2 py-4 ">
@@ -85,14 +93,7 @@ const AccountList = () => {
           ))}
         </table>
         {total !== undefined && (
-          <Pagenation
-            total={total}
-            limit={limit}
-            page={page}
-            setPage={setPage}
-            url={url}
-            setUrl={setUrl}
-          />
+          <Pagenation total={total} limit={limit} page={page} setPage={setPage} />
         )}
       </div>
     </>
