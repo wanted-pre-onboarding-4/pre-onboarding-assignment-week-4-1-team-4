@@ -4,7 +4,6 @@ export function joinarray(temp) {
   return temp.join('&') === '' ? temp.join('&') : '&' + temp.join('&');
 }
 export function isValueZero(value, index) {
-  console.log(value, index);
   return value === '0' ? '' : '&' + FilterKey[index] + '=' + value;
 }
 
@@ -14,12 +13,10 @@ export function splitUrl(url, index) {
     .split('&')
     .filter(data => data !== '');
   returnUrl.shift();
-  console.log(returnUrl);
   return returnUrl;
 }
 
 export function CreateLink(value, index, location, navigate) {
-  console.log(location);
   if (location.search.includes(FilterKey[index])) {
     const temp = splitUrl(location.search, index);
     navigate(

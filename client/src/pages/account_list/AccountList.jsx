@@ -14,7 +14,6 @@ const AccountList = () => {
   const [limit, setLimit] = useState(10);
   const [status, setStatus] = useState();
   const location = useLocation();
-  console.log(location.search);
   const getAccountList = async () => {
     const res = await getAccounts(location.search);
     setAccounts(res.data);

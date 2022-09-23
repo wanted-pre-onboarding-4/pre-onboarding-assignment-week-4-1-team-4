@@ -24,7 +24,7 @@ const Search = ({ getAccountList }) => {
     } else {
       navigate(`${location.search}?q=${enteredSearch}`);
     }
-    // getAccountList();
+    getAccountList();
   };
 
   return (
