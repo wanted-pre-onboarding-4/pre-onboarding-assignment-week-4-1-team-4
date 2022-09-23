@@ -12,10 +12,11 @@ const Account = ({ account }) => {
   useEffect(() => {
     const getUserData = async () => {
       const data = await getUser(account.user_id);
+      console.log(data);
       setData(data);
     };
     getUserData();
-  }, [account.user_id]);
+  }, []);
 
   const rate = ((+account.assets - +account.payments) / (+account.payments * 100))
     .toString()

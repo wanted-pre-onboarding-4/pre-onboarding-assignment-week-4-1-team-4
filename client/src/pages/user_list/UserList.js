@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { getUser } from '../../services/account';
+import { getUserByURL } from '../../services/account';
 import { useLocation } from 'react-router-dom';
 import User from './components/User';
 function UserList() {
   const location = useLocation();
   const [users, setUsers] = useState([]);
   const getUserList = async () => {
-    const res = await getUser(location.search);
+    const res = await getUserByURL(location.search);
     console.log(res.data);
     setUsers(res.data);
   };
@@ -32,7 +32,9 @@ function UserList() {
               <th className="justify-center flex flex-1">가입일</th>
             </tr>
           </thead>
-          {users.map(user => console.log(user))}
+          {users.map(user => (
+            <User user={user} key={user.uuid} />
+          ))}
         </table>
       </div>
     </>

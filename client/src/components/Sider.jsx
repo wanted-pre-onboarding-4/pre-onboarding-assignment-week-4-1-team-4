@@ -58,7 +58,10 @@ const Sider = () => {
         </li>
 
         <li>
-          <NavLink to="/users" className="flex items-center px-6 space-x-2 py-4 text-gray-300">
+          <NavLink
+            to={`/users?_page=1&_limit=10`}
+            className="flex items-center px-6 space-x-2 py-4 text-gray-300"
+          >
             <BsPerson />
             <span>사용자</span>
           </NavLink>
