@@ -48,3 +48,10 @@ export const maskingAccount = str => {
     return maskingStr;
   }
 };
+
+export const pageReturn = (link, navigate) => {
+  const params = new URLSearchParams(link);
+  params.set('_page', 1);
+  navigate('?' + params.toString());
+  return '?' + params.toString();
+};

@@ -18,8 +18,10 @@ const AccountList = () => {
   const [search, setSearch] = useState();
   const location = useLocation();
 
-  const getAccountList = async () => {
-    const res = await getAccounts(location.search);
+  const getAccountList = async url => {
+    console.log(location.search, 'search');
+    console.log(url);
+    const res = await getAccounts(url || location.search);
     setAccounts(res.data);
     setTotal(res.headers['x-total-count']);
   };

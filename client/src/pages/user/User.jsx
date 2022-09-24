@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getUser, getAccounts, getUserSetting } from '../../services/account';
+import { getUser, getAccounts } from '../../services/account';
 import UserInfo from './components/UserInfo';
 import UserAccountList from './components/UserAccountList';
 import { getUserSettingDetail } from '../../utils/getUserSettingDetail';
@@ -28,7 +28,12 @@ export default function User() {
   }, [user_id]);
 
   useEffect(() => {
-    setUserSetting(getUserSettingDetail(user.uuid));
+    const getUserSettingData = async () => {
+      const res = await getUserSettingDetail(user.uuid);
+      setUserSetting(res);
+    };
+
+    getUserSettingData();
   }, [user]);
 
   const userData = {

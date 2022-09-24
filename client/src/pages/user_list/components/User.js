@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getUserAccounts, getUserSetting } from '../../../services/account';
-import accountStatus from '../../../data/accountStatus.json';
+import { getUserAccounts } from '../../../services/account';
 import { getUserSettingDetail } from '../../../utils/getUserSettingDetail';
 function User({ user }) {
   const { name, birth_date, gender_origin, id, last_login, phone_number, email, created_at, uuid } =
@@ -17,9 +16,12 @@ function User({ user }) {
   }, []);
 
   useEffect(() => {
-    setUserSetting(getUserSettingDetail(uuid));
-  }, []);
-
+    const getUserSettingData = async () => {
+      const res = await getUserSettingDetail(uuid);
+      setUserSetting(res);
+    };
+    getUserSettingData();
+  }, [user]);
   function FormatDate(date, index) {
     date = date.split('-');
     if (index === 0) {
@@ -40,7 +42,7 @@ function User({ user }) {
   }
   return (
     <>
-      {userAccounts.length !== 0 && userSetting !== undefined && (
+      {userAccounts.length !== 0 && (
         <tbody className="flex items-center justify-between w-full bg-white py-2 text-sm">
           <tr className="justify-center flex flex-1">
             <td>{name}</td>
@@ -64,10 +66,10 @@ function User({ user }) {
             <td>{FormatDate(last_login, 1)}</td>
           </tr>
           <tr className="justify-center flex flex-1">
-            <td>{userSetting.allow_invest_push ? 'YES' : 'NO'}</td>
+            <td>{userSetting?.allow_marketing_push ? 'YES' : 'NO'}</td>
           </tr>
           <tr className="justify-center flex flex-1">
-            <td>{userSetting.is_active ? 'YES' : 'NO'}</td>
+            <td>{userSetting?.is_active ? 'YES' : 'NO'}</td>
           </tr>
           <tr className="justify-center flex flex-1">
             <td>{FormatDate(created_at, 0)}</td>

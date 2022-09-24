@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 
 const instance = axios.create({
   baseURL: '',
-  timeout: 2000,
+  timeout: 5000,
 });
 
 instance.interceptors.request.use(
