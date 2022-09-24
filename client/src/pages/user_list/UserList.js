@@ -8,7 +8,7 @@ import { dataInfo } from '../../utils/dataInfo';
 function UserList() {
   const location = useLocation();
   const [users, setUsers] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(+location.search.split('&')[0].split('page=')[1]);
   const [limit, setLimit] = useState(10);
   const [total, setTotal] = useState();
 

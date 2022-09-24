@@ -9,15 +9,16 @@ import Pagenation from '../../components/Pagenation';
 import { dataInfo } from '../../utils/dataInfo';
 
 const AccountList = () => {
+  const location = useLocation();
+
   const [accounts, setAccounts] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(+location.search.split('&')[0].split('page=')[1]);
   const [brokerId, setBrokerId] = useState();
   const [isActive, setIsActive] = useState(true);
   const [limit, setLimit] = useState(10);
   const [status, setStatus] = useState();
   const [total, setTotal] = useState();
   const [search, setSearch] = useState();
-  const location = useLocation();
 
   const getAccountList = async url => {
     const res = await getAccounts(url || location.search);
