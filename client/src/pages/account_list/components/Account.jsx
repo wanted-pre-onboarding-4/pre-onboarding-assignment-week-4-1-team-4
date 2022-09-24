@@ -9,17 +9,18 @@ import { useState } from 'react';
 const Account = ({ account }) => {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const getUserData = async () => {
-      const data = await getUser(account.user_id);
-      setData(data);
-    };
-    getUserData();
-  }, [account.user_id]);
-
   const rate = ((+account.assets - +account.payments) / (+account.payments * 100))
     .toString()
     .slice(0, 7);
+
+  const getUserData = async () => {
+    const data = await getUser(account.user_id);
+    setData(data);
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   return (
     <>
@@ -30,21 +31,29 @@ const Account = ({ account }) => {
         <tr className="justify-center flex flex-1">
           <td>{brokers[account.broker_id]}</td>
         </tr>
-        <tr className="justify-center flex flex-1">
+        <tr className="justify-center flex flex-1 hover:underline">
           <td>
-            {account.number
-              .split('')
-              .map((char, idx) => (idx > 1 && idx < account.number.length - 2 ? '*' : char))
-              .join('')}
+            <Link to={`/accounts/${account.id}`}>
+              {account.number
+                .split('')
+                .map((char, idx) => (idx > 1 && idx < account.number.length - 2 ? '*' : char))
+                .join('')}
+            </Link>
           </td>
         </tr>
-        <tr className="justify-center flex flex-1">
+        <tr className="justify-center flex flex-1 hover:underline">
           <td>
             <Link to={`/users/${account.user_id}`}>{data.data?.name}</Link>
           </td>
         </tr>
         <tr className="justify-center flex flex-1">
-          <td>{Object.keys(accountStatus).find(key => accountStatus[key] === account.status)}</td>
+          <td>
+            {
+              Object.entries(accountStatus).find(key => {
+                return +key[0] === account.status;
+              })[1]
+            }
+          </td>
         </tr>
         <tr className="justify-center flex flex-1">
           <td>{account.name}</td>

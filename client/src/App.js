@@ -1,9 +1,12 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import AccountList from './pages/account_list/AccountList';
 import Login from './pages/login/Login';
+import User from './pages/user/User';
 import PrivateRoute from './utils/PrivateRoute';
 import PublicRoute from './utils/PublicRoute';
+import AccountDetail from './pages/account_detail/AccountDetail';
+import UserList from './pages/user_list/UserList';
 
 function App() {
   return (
@@ -14,11 +17,11 @@ function App() {
         </Route>
         <Route element={<PrivateRoute />}>
           <Route element={<Layout />}>
-            <Route path="/" element={<div>홈</div>} />
-            <Route path="/users" element={<div>유저 목록 페이지</div>} />
-            <Route path="/users/:user_id" element={<div>유저 상세 페이지</div>} />
-            <Route path="/accounts" element={<AccountList/>} />
-            <Route path="/accounts/:account_id" element={<div>계좌 상세 페이지</div>} />
+            <Route path="/" element={<Navigate to="/accounts?_page=1&_limit=10" />} />
+            <Route path="/users" element={<UserList />} />
+            <Route path="/users/:user_id" element={<User />} />
+            <Route path="/accounts" element={<AccountList />} />
+            <Route path="/accounts/:account_id" element={<AccountDetail />} />
             <Route path="*" element={<div>404페이지</div>} />
           </Route>
         </Route>
