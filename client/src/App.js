@@ -5,6 +5,7 @@ import Login from './pages/login/Login';
 import User from './pages/user/User';
 import PrivateRoute from './utils/PrivateRoute';
 import PublicRoute from './utils/PublicRoute';
+import AccountDetail from './pages/account_detail/AccountDetail';
 import UserList from './pages/user_list/UserList';
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
             <Route path="/users" element={<UserList />} />
             <Route path="/users/:user_id" element={<User />} />
             <Route path="/accounts" element={<AccountList />} />
-            <Route path="/accounts/:account_id" element={<div>계좌 상세 페이지</div>} />
+            <Route path="/accounts/:account_id" element={<AccountDetail />} />
             <Route path="*" element={<div>404페이지</div>} />
           </Route>
         </Route>

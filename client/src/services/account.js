@@ -20,6 +20,9 @@ export const getUser = userId => {
   return http.get(`/users/${userId}`);
 };
 
+export const getAccount = userId => {
+  return http.get(`${userId}`);
+};
 export const getUserByURL = url => {
   console.log(url);
   return http.get(`/users${url}`);
