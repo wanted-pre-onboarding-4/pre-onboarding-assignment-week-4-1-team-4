@@ -20,5 +20,6 @@ export const getUser = userId => {
 };
 
 export const getUserByURL = url => {
+  console.log(url);
   return http.get(`/users${url}`);
 };

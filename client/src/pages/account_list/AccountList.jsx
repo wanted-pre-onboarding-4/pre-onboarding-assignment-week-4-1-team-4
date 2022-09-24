@@ -19,12 +19,8 @@ const AccountList = () => {
   const location = useLocation();
 
   const getAccountList = async () => {
-    console.log(location.search);
     const res = await getAccounts(location.search);
     setAccounts(res.data);
-    console.log(res.data);
-    console.log(res.headers['x-total-count']);
-
     setTotal(res.headers['x-total-count']);
   };
   useEffect(() => {
@@ -60,7 +56,7 @@ const AccountList = () => {
             />
             <Select
               name="페이지 당 게시물"
-              options={{ 0: '5', 1: '10', 2: '15', 3: '20' }}
+              options={{ 0: '5', 1: '10', 2: '15', 3: '20', 4: '50' }}
               setFunction={setLimit}
               index={3}
               setPage={setPage}

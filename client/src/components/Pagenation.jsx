@@ -4,7 +4,6 @@ function Pagenation({ total, limit, page, setPage }) {
   const location = useLocation();
   const navigate = useNavigate();
   const numPages = Math.ceil(total / limit);
-
   return (
     <>
       <nav className="flex flex-wrap justify-center items-center m-4">
@@ -12,7 +11,7 @@ function Pagenation({ total, limit, page, setPage }) {
           .fill()
           .map((_, i) => (
             <button
-              className=" rounded-lg p-2 m-2 bg-blue-200  text-black text-base hover:bg-lime-300"
+              className="rounded-lg p-2 m-2 bg-blue-200  text-black text-base hover:bg-lime-300 focus:bg-purple-200"
               key={i + 1}
               onClick={() => {
                 CreateLink(i + 1, 4, location, navigate);

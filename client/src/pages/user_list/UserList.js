@@ -1,18 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { getUserByURL } from '../../services/account';
+import { getUserByURL, getUserSetting } from '../../services/account';
 import { useLocation } from 'react-router-dom';
 import User from './components/User';
+import Pagenation from '../../components/Pagenation';
 function UserList() {
   const location = useLocation();
   const [users, setUsers] = useState([]);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+  const [total, setTotal] = useState();
+
   const getUserList = async () => {
+    console.log(location.search);
     const res = await getUserByURL(location.search);
-    console.log(res.data);
+
     setUsers(res.data);
+    console.log(res.headers['x-total-count']);
+    setTotal(res.headers['x-total-count']);
   };
   useEffect(() => {
     getUserList();
-  }, []);
+  }, [page]);
 
   return (
     <>
@@ -36,6 +44,9 @@ function UserList() {
             <User user={user} key={user.uuid} />
           ))}
         </table>
+        {total !== undefined && (
+          <Pagenation total={total} limit={limit} page={page} setPage={setPage} />
+        )}
       </div>
     </>
   );

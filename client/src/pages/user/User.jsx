@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getUser, getAccounts, getUserSetting } from '../../services/account';
 import UserInfo from './components/UserInfo';
 import UserAccountList from './components/UserAccountList';
-
+import { getUserSettingDetail } from '../../utils/getUserSettingDetail';
 export default function User() {
   const { user_id } = useParams();
 
@@ -28,17 +28,7 @@ export default function User() {
   }, [user_id]);
 
   useEffect(() => {
-    const getUserSettingDetail = async () => {
-      const res = await getUserSetting();
-      const settings = res.data.filter(setting => setting.uuid === user.uuid)[0];
-      setUserSetting({
-        allow_invest_push: settings?.allow_invest_push,
-        allow_marketing_push: settings?.allow_marketing_push,
-        is_active: settings?.is_active,
-        is_staff: settings?.is_staff,
-      });
-    };
-    getUserSettingDetail();
+    setUserSetting(getUserSettingDetail(user.uuid));
   }, [user]);
 
   const userData = {
