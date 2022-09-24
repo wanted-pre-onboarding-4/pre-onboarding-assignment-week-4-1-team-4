@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getUserAccounts } from '../../../services/account';
 import { FormatDate } from '../../../utils/funcs';
 import { getUserSettingDetail } from '../../../utils/getUserSettingDetail';
@@ -9,6 +9,7 @@ function User({ user }) {
     user;
   const [userAccounts, setUserAccounts] = useState([]);
   const [userSetting, setUserSetting] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getUserData = async () => {
@@ -17,6 +18,10 @@ function User({ user }) {
     };
     getUserData();
   }, []);
+
+  const handleUserClick = () => {
+    navigate(`/users/${id}`);
+  };
 
   useEffect(() => {
     const getUserSettingData = async () => {
@@ -30,10 +35,8 @@ function User({ user }) {
     <>
       {userAccounts.length !== 0 && (
         <tbody className="flex items-center justify-between w-full bg-white py-2 text-sm">
-          <tr className="justify-center flex flex-1 hover:underline">
-            <Link to={`/users/${id}`}>
-              <td>{name}</td>
-            </Link>
+          <tr className="justify-center flex flex-1 hover:underline cursor-pointer">
+            <td onClick={handleUserClick}>{name}</td>
           </tr>
           <tr className="justify-center flex flex-1">
             <td>{userAccounts.length}</td>
