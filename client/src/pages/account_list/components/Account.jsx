@@ -9,17 +9,18 @@ import { useState } from 'react';
 const Account = ({ account }) => {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const getUserData = async () => {
-      const data = await getUser(account.user_id);
-      setData(data);
-    };
-    getUserData();
-  }, []);
-
   const rate = ((+account.assets - +account.payments) / (+account.payments * 100))
     .toString()
     .slice(0, 7);
+
+  const getUserData = async () => {
+    const data = await getUser(account.user_id);
+    setData(data);
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   return (
     <>

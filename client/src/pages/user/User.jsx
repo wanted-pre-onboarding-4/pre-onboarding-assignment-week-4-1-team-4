@@ -10,6 +10,11 @@ import UpdateUser from './components/UpdateUser';
 
 export default function User() {
   const { user_id } = useParams();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalOpen(prev => !prev);
+  };
 
   const { data: userInfo } = useQuery(
     ['userInfo', user_id],
@@ -19,6 +24,7 @@ export default function User() {
     },
     {
       staleTime: 180000,
+      cacheTime: 180000,
       enabled: !!user_id,
       onError: res => {
         console.error(res);
@@ -34,6 +40,7 @@ export default function User() {
     },
     {
       staleTime: 180000,
+      cacheTime: 180000,
       enabled: !!user_id,
       onError: res => {
         console.error(res);
@@ -55,23 +62,13 @@ export default function User() {
     },
     {
       staleTime: 180000,
+      cacheTime: 180000,
       enabled: !!user_id,
       onError: res => {
         console.error(res);
       },
     }
   );
-
-  const userData = {
-    ...userInfo,
-    ...userSettingInfo,
-  };
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const toggleModal = () => {
-    setIsModalOpen(prev => !prev);
-  };
 
   return (
     <>
@@ -86,7 +83,7 @@ export default function User() {
             <div className="mr-3">사용자 정보</div>
             <BiEditAlt onClick={toggleModal} />
           </h1>
-          <UserInfo userData={userData} />
+          <UserInfo userData={{ ...userInfo, ...userSettingInfo }} />
         </section>
         <section className="flex flex-col w-full">
           <h1 className="text-2xl font-semibold mb-5">사용자 계좌 목록</h1>

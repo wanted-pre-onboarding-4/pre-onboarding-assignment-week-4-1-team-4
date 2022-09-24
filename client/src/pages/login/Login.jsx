@@ -8,12 +8,14 @@ import authStore from '../../store/AuthStore';
 const Login = () => {
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredPassword, setEnteredPassword] = useState('');
-
   const { onLogin } = authStore();
+
+  let formValid = false;
 
   const changeEmail = e => {
     setEnteredEmail(e.target.value);
   };
+
   const changePassword = e => {
     setEnteredPassword(e.target.value);
   };
@@ -24,8 +26,6 @@ const Login = () => {
     setEnteredEmail('');
     setEnteredPassword('');
   };
-
-  let formValid = false;
 
   if (enteredEmail.includes('@') && enteredPassword.length >= 4) formValid = true;
 

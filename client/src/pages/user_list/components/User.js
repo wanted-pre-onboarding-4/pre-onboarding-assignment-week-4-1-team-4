@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getUserAccounts } from '../../../services/account';
+import { FormatDate } from '../../../utils/funcs';
 import { getUserSettingDetail } from '../../../utils/getUserSettingDetail';
+
 function User({ user }) {
   const { name, birth_date, gender_origin, id, last_login, phone_number, email, created_at, uuid } =
     user;
@@ -23,25 +25,6 @@ function User({ user }) {
     };
     getUserSettingData();
   }, [user]);
-
-  function FormatDate(date, index) {
-    date = date.split('-');
-    if (index === 0) {
-      return date[0] + '년 ' + date[1] + '월 ' + date[2].substring(0, 2) + '일';
-    }
-    return (
-      date[0].substring(2, 4) +
-      '년 ' +
-      date[1] +
-      '월 ' +
-      date[2].substring(0, 2) +
-      '일 ' +
-      date[2].substring(3, 5) +
-      '시 ' +
-      date[2].substring(6, 8) +
-      '분'
-    );
-  }
 
   return (
     <>

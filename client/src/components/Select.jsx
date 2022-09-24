@@ -9,13 +9,14 @@ const Select = ({ name, options, setFunction, index, setPage }) => {
 
   const optionClickHandler = e => {
     if (index === 0 || index === 1 || index === 2 || index === 6) {
-      setFunction(e.target.value);
-
       const link = createLink(e.target.value, index, location, navigate);
+
+      setFunction(e.target.value);
       pageReturn(link, navigate);
     } else {
-      setFunction(options[e.target.value]);
       const link = createLink(options[e.target.value], index, location, navigate);
+
+      setFunction(options[e.target.value]);
       pageReturn(link, navigate);
     }
   };
