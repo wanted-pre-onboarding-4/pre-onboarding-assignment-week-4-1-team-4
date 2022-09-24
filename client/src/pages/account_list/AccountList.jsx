@@ -3,10 +3,10 @@ import Search from '../../components/Search';
 import { getAccounts } from '../../services/account';
 import { useLocation } from 'react-router-dom';
 import brokers from '../../data/brokers.json';
-import Account from './components/Account';
 import Select from '../../components/Select';
 import accountStatus from '../../data/accountStatus.json';
 import Pagenation from '../../components/Pagenation';
+import { dataInfo } from '../../utils/dataInfo';
 const AccountList = () => {
   const [accounts, setAccounts] = useState([]);
   const [page, setPage] = useState(1);
@@ -15,19 +15,20 @@ const AccountList = () => {
   const [limit, setLimit] = useState(10);
   const [status, setStatus] = useState();
   const [total, setTotal] = useState();
-  const [url, setUrl] = useState();
+  const [search, setSearch] = useState();
   const location = useLocation();
 
-  const getAccountList = async () => {
-    console.log(url, location.search);
-    const res = await getAccounts(location.search);
+  const getAccountList = async url => {
+    console.log(location.search, 'search');
+    console.log(url);
+    const res = await getAccounts(url || location.search);
     setAccounts(res.data);
     setTotal(res.headers['x-total-count']);
   };
   useEffect(() => {
     getAccountList();
     console.log('실행');
-  }, [limit, isActive, brokerId, status, page, url]);
+  }, [limit, isActive, brokerId, status, page, search]);
 
   return (
     <>
@@ -57,13 +58,18 @@ const AccountList = () => {
             />
             <Select
               name="페이지 당 게시물"
-              options={{ 0: '5', 1: '10', 2: '15', 3: '20' }}
+              options={{ 0: '5', 1: '10', 2: '15', 3: '20', 4: '50' }}
               setFunction={setLimit}
               index={3}
               setPage={setPage}
             />
           </div>
-          <Search getAccountList={getAccountList} setPage={setPage} />
+          <Search
+            getAccountList={getAccountList}
+            setPage={setPage}
+            setSearch={setSearch}
+            search={search}
+          />
         </div>
         <table className="bg-gray-200 w-full border-solid border-[1px]">
           <thead className="flex w-full px-2 py-4 ">
@@ -80,19 +86,10 @@ const AccountList = () => {
               <th className="justify-center flex flex-1">계좌개설일</th>
             </tr>
           </thead>
-          {accounts.map(account => (
-            <Account key={account.uuid} account={account} />
-          ))}
+          {accounts && dataInfo(accounts, total, 1)}
         </table>
         {total !== undefined && (
-          <Pagenation
-            total={total}
-            limit={limit}
-            page={page}
-            setPage={setPage}
-            url={url}
-            setUrl={setUrl}
-          />
+          <Pagenation total={total} limit={limit} page={page} setPage={setPage} />
         )}
       </div>
     </>

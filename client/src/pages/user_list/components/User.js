@@ -1,24 +1,32 @@
 import { useEffect, useState } from 'react';
 import { getUserAccounts } from '../../../services/account';
-import accountStatus from '../../../data/accountStatus.json';
+import { getUserSettingDetail } from '../../../utils/getUserSettingDetail';
 function User({ user }) {
-  const { name, birth_date, gender_origin, id, last_login, phone_number, email, created_at } = user;
+  const { name, birth_date, gender_origin, id, last_login, phone_number, email, created_at, uuid } =
+    user;
   const [userAccounts, setUserAccounts] = useState([]);
-
+  const [userSetting, setUserSetting] = useState({});
+  console.log(user);
   useEffect(() => {
     const getUserData = async () => {
       const res = await getUserAccounts(id);
-      console.log(res.data);
       setUserAccounts(res.data);
     };
     getUserData();
   }, []);
+
+  useEffect(() => {
+    const getUserSettingData = async () => {
+      const res = await getUserSettingDetail(uuid);
+      setUserSetting(res);
+    };
+    getUserSettingData();
+  }, [user]);
   function FormatDate(date, index) {
     date = date.split('-');
     if (index === 0) {
       return date[0] + '년 ' + date[1] + '월 ' + date[2].substring(0, 2) + '일';
     }
-    console.log(date);
     return (
       date[0].substring(2, 4) +
       '년 ' +
@@ -58,16 +66,10 @@ function User({ user }) {
             <td>{FormatDate(last_login, 1)}</td>
           </tr>
           <tr className="justify-center flex flex-1">
-            <td>{id}</td>
+            <td>{userSetting?.allow_marketing_push ? 'YES' : 'NO'}</td>
           </tr>
           <tr className="justify-center flex flex-1">
-            <td>
-              {
-                Object.entries(accountStatus).find(key => {
-                  return +key[0] === userAccounts[0]?.status;
-                })[1]
-              }
-            </td>
+            <td>{userSetting?.is_active ? 'YES' : 'NO'}</td>
           </tr>
           <tr className="justify-center flex flex-1">
             <td>{FormatDate(created_at, 0)}</td>

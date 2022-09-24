@@ -16,15 +16,12 @@ export function splitUrl(url, index) {
     .split(FilterKey[index])[1]
     .split('&')
     .filter(data => data !== '');
-  console.log(returnUrl);
-
   returnUrl.shift();
-  console.log(returnUrl);
 
   return returnUrl;
 }
 
-export function CreateLink(value, index, location, navigate) {
+export function createLink(value, index, location, navigate) {
   if (location.search.includes(FilterKey[index])) {
     const temp = splitUrl(location.search, index);
     navigate(
