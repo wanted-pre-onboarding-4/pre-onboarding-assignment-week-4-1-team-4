@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { getUser, getAccounts } from '../../services/account';
+import { getUser, getAccounts, getUserSetting } from '../../services/account';
 import UserInfo from './components/UserInfo';
 import UserAccountList from './components/UserAccountList';
 import { useQuery } from 'react-query';
