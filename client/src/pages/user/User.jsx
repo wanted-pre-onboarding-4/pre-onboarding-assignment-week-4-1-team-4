@@ -10,8 +10,13 @@ import UpdateUser from './components/UpdateUser';
 
 export default function User() {
   const { user_id } = useParams();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { data: userInfo } = useQuery(
+  const toggleModal = () => {
+    setIsModalOpen(prev => !prev);
+  };
+
+  const { data: userInfo, refetch: userInfoRefetch } = useQuery(
     ['userInfo', user_id],
     async () => {
       const res = await getUser(user_id);
@@ -19,6 +24,7 @@ export default function User() {
     },
     {
       staleTime: 180000,
+      cacheTime: 180000,
       enabled: !!user_id,
       onError: res => {
         console.error(res);
@@ -34,6 +40,7 @@ export default function User() {
     },
     {
       staleTime: 180000,
+      cacheTime: 180000,
       enabled: !!user_id,
       onError: res => {
         console.error(res);
@@ -55,6 +62,7 @@ export default function User() {
     },
     {
       staleTime: 180000,
+      cacheTime: 180000,
       enabled: !!user_id,
       onError: res => {
         console.error(res);
@@ -62,22 +70,11 @@ export default function User() {
     }
   );
 
-  const userData = {
-    ...userInfo,
-    ...userSettingInfo,
-  };
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const toggleModal = () => {
-    setIsModalOpen(prev => !prev);
-  };
-
   return (
     <>
       {isModalOpen && (
         <Modal>
-          <UpdateUser userInfo={userInfo} toggleModal={toggleModal} />
+          <UpdateUser refetch={userInfoRefetch} userInfo={userInfo} toggleModal={toggleModal} />
         </Modal>
       )}
       <div className="flex flex-col items-center w-full bg-slate-100 p-10">
@@ -86,7 +83,7 @@ export default function User() {
             <div className="mr-3">사용자 정보</div>
             <BiEditAlt onClick={toggleModal} />
           </h1>
-          <UserInfo userData={userData} />
+          <UserInfo userData={{ ...userInfo, ...userSettingInfo }} />
         </section>
         <section className="flex flex-col w-full">
           <h1 className="text-2xl font-semibold mb-5">사용자 계좌 목록</h1>

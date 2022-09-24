@@ -25,6 +25,7 @@ const AccountList = () => {
     setAccounts(res.data);
     setTotal(res.headers['x-total-count']);
   };
+
   useEffect(() => {
     getAccountList();
   }, [limit, isActive, brokerId, status, page, search]);

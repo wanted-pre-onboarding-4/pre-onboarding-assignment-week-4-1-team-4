@@ -13,7 +13,7 @@ const Select = ({ name, options, setFunction, index, setPage }) => {
       const link = createLink(e.target.value, index, location, navigate);
       pageReturn(link, navigate);
     } else {
-      setPage(1);
+      // setPage(1);
       setFunction(options[e.target.value]);
       const link = createLink(options[e.target.value], index, location, navigate);
       pageReturn(link, navigate);
@@ -22,9 +22,7 @@ const Select = ({ name, options, setFunction, index, setPage }) => {
 
   return (
     <select className="p-1 rounded-sm w-38 outline-none" onChange={e => optionClickHandler(e)}>
-      <option disabled="disabled" value="">
-        {name}
-      </option>
+      <option value="0">{name}</option>
       {Object.entries(options).map(option => (
         <option key={option} value={option[0]}>
           {option[1]}

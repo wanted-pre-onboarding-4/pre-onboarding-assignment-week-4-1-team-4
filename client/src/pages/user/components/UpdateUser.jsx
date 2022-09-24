@@ -11,7 +11,7 @@ import { useState } from 'react';
 import { putUser } from '../../../services/account';
 import { useMutation } from 'react-query';
 
-export default function UpdateUser({ userInfo, toggleModal }) {
+export default function UpdateUser({ refetch, userInfo, toggleModal }) {
   const style = {
     label: 'flex items-center block text-gray-700 text-sm font-bold mb-2',
     input:
@@ -46,6 +46,7 @@ export default function UpdateUser({ userInfo, toggleModal }) {
     {
       onSuccess: () => {
         toggleModal();
+        refetch();
       },
       onError: res => {
         console.error(res);

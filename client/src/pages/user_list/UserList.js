@@ -5,6 +5,9 @@ import Pagenation from '../../components/Pagenation';
 import Select from '../../components/Select';
 import Search from '../../components/Search';
 import { dataInfo } from '../../utils/dataInfo';
+
+const ADMIN_ACCOUNT_COUNT = 4;
+
 function UserList() {
   const location = useLocation();
   const [users, setUsers] = useState([]);
@@ -15,8 +18,9 @@ function UserList() {
   const getUserList = async url => {
     const res = await getUserByURL(url || location.search);
     setUsers(res.data);
-    setTotal(res.headers['x-total-count']);
+    setTotal(res.headers['x-total-count'] - ADMIN_ACCOUNT_COUNT);
   };
+
   useEffect(() => {
     getUserList();
   }, [limit, page]);

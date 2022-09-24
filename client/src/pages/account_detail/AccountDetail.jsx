@@ -14,12 +14,14 @@ function AccountDetail() {
   const update_date = new Date(account.updated_at);
 
   const accountBrokerFormat = (accountNumber, brokerId) => {
-    if (brokerId === undefined) {
-      return '';
-    }
     const format = brokerFormat[brokerId];
     let resultAccount = '';
     let j = 0;
+
+    if (brokerId === undefined) {
+      return '';
+    }
+
     for (let i = 0; i < format.length; i++) {
       if (format[i] === '0') {
         resultAccount += accountNumber[j];
@@ -28,16 +30,18 @@ function AccountDetail() {
         resultAccount += '-';
       }
     }
+
     return resultAccount;
   };
 
+  const getAccountDetail = async () => {
+    const resAccount = await getAccountById(id);
+    const resUser = await getUser(resAccount.data.user_id);
+    setAccount(resAccount.data);
+    setUser(resUser.data);
+  };
+
   useEffect(() => {
-    const getAccountDetail = async () => {
-      const resAccount = await getAccountById(id);
-      const resUser = await getUser(resAccount.data.user_id);
-      setAccount(resAccount.data);
-      setUser(resUser.data);
-    };
     getAccountDetail();
   }, []);
 
