@@ -10,10 +10,7 @@
 
 ## 🎬 프로젝트 데모
 
-
-
-![preface](/Users/seoljaehyeok/Downloads/ezgif.com-gif-maker.gif)
-
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/71430291/192108879-59647e9e-334f-4dc6-bf9a-9df45544a4dd.gif)
 
 
 ## :nut_and_bolt: 과제 요구 사항
