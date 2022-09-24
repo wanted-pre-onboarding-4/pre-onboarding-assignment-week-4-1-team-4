@@ -11,19 +11,30 @@ function UserList() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [total, setTotal] = useState();
-  const [staff] = useState();
-  const [isActive] = useState();
-  const [search, setSearch] = useState();
-  const getUserList = async () => {
-    console.log(location.search);
-    const res = await getUserByURL(location.search);
-    console.log(res);
+  const [staff, setStaff] = useState();
+  const [isActive, setIsActive] = useState();
+
+  const userInfo = users => {
+    if (total === '0') {
+      return (
+        <div className="text-center mt-3 mb-12 text-3xl  font-semibold">데이터가 없습니다</div>
+      );
+    }
+
+    if (users.length === 0) {
+      return <div className="text-center mt-3 mb-12 text-3xl  font-semibold">Loading....</div>;
+    }
+
+    return users.map(user => <User user={user} key={user.uuid} />);
+  };
+
+  const getUserList = async url => {
+    const res = await getUserByURL(url || location.search);
     setUsers(res.data);
     setTotal(res.headers['x-total-count']);
   };
   useEffect(() => {
     getUserList();
-    console.log('실행');
   }, [limit, isActive, page, staff]);
 
   return (
@@ -54,12 +65,7 @@ function UserList() {
               setPage={setPage}
             />
           </div>
-          <Search
-            getAccountList={getUserList}
-            setPage={setPage}
-            setSearch={setSearch}
-            search={search}
-          />
+          <Search getAccountList={getUserList} />
         </div>
         <table className="bg-gray-200 w-full border-solid border-[1px]">
           <thead className="flex w-full px-2 py-4 ">
@@ -76,9 +82,7 @@ function UserList() {
               <th className="justify-center flex flex-1">가입일</th>
             </tr>
           </thead>
-          {users.map(user => (
-            <User user={user} key={user.uuid} />
-          ))}
+          {users && userInfo(users)}
         </table>
         {total !== undefined && (
           <Pagenation total={total} limit={limit} page={page} setPage={setPage} />

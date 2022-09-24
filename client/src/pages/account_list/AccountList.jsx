@@ -30,6 +30,19 @@ const AccountList = () => {
     console.log('실행');
   }, [limit, isActive, brokerId, status, page, search]);
 
+  const accountInfo = accounts => {
+    if (total === '0') {
+      return (
+        <div className="text-center mt-3 mb-12 text-3xl  font-semibold">데이터가 없습니다</div>
+      );
+    }
+
+    if (accounts.length === 0) {
+      return <div className="text-center mt-3 mb-12 text-3xl  font-semibold">Loading....</div>;
+    }
+    return accounts.map(account => <Account key={account.uuid} account={account} />);
+  };
+
   return (
     <>
       <div className="px-4 py-8 w-screen bg-gray-100 min-w-[1600px] ">
@@ -86,9 +99,7 @@ const AccountList = () => {
               <th className="justify-center flex flex-1">계좌개설일</th>
             </tr>
           </thead>
-          {accounts.map(account => (
-            <Account key={account.uuid} account={account} />
-          ))}
+          {accountInfo(accounts, Account)}
         </table>
         {total !== undefined && (
           <Pagenation total={total} limit={limit} page={page} setPage={setPage} />

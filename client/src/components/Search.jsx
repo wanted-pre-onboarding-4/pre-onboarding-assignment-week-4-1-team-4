@@ -10,7 +10,6 @@ const Search = ({ getAccountList }) => {
   const location = useLocation();
 
   const searchHandler = e => {
-    console.log(e);
     e.preventDefault();
     let url = CreateLink(enteredSearch, 5, location, navigate);
     url = pageReturn(url, navigate);
