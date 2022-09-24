@@ -24,3 +24,11 @@ export const getUserByURL = url => {
   console.log(url);
   return http.get(`/users${url}`);
 };
+
+export const putUser = (userId, config) => {
+  return http.put(`/users/${userId}`, config);
+};
+
+export const deleteUser = userId => {
+  return http.delete(`/users/${userId}`);
+};
