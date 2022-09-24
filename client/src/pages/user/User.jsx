@@ -16,7 +16,7 @@ export default function User() {
     setIsModalOpen(prev => !prev);
   };
 
-  const { data: userInfo } = useQuery(
+  const { data: userInfo, refetch: userInfoRefetch } = useQuery(
     ['userInfo', user_id],
     async () => {
       const res = await getUser(user_id);
@@ -74,7 +74,7 @@ export default function User() {
     <>
       {isModalOpen && (
         <Modal>
-          <UpdateUser userInfo={userInfo} toggleModal={toggleModal} />
+          <UpdateUser refetch={userInfoRefetch} userInfo={userInfo} toggleModal={toggleModal} />
         </Modal>
       )}
       <div className="flex flex-col items-center w-full bg-slate-100 p-10">
