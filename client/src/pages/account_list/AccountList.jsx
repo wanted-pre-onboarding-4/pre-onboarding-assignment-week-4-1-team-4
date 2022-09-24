@@ -7,6 +7,7 @@ import Select from '../../components/Select';
 import accountStatus from '../../data/accountStatus.json';
 import Pagenation from '../../components/Pagenation';
 import { dataInfo } from '../../utils/dataInfo';
+
 const AccountList = () => {
   const [accounts, setAccounts] = useState([]);
   const [page, setPage] = useState(1);
@@ -19,15 +20,12 @@ const AccountList = () => {
   const location = useLocation();
 
   const getAccountList = async url => {
-    console.log(location.search, 'search');
-    console.log(url);
     const res = await getAccounts(url || location.search);
     setAccounts(res.data);
     setTotal(res.headers['x-total-count']);
   };
   useEffect(() => {
     getAccountList();
-    console.log('실행');
   }, [limit, isActive, brokerId, status, page, search]);
 
   return (

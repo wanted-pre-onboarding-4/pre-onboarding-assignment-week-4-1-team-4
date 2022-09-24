@@ -7,15 +7,14 @@ import { useNavigate } from 'react-router-dom';
 
 export default function UserAccountItem({ account }) {
   const navigate = useNavigate();
-  const { name, number, assets, broker_id, created_at, is_active, payments, status, uuid } =
-    account;
+  const { name, number, assets, broker_id, created_at, is_active, payments, status, id } = account;
 
   return (
     <tr>
       <td className={`${style.td}`}>{brokers[broker_id]}</td>
       <td
         className={`${style.td} hover:underline cursor-pointer`}
-        onClick={() => navigate(`/accounts/${uuid}`)}
+        onClick={() => navigate(`/accounts/${id}`)}
       >
         {getAccountFormat(maskingAccount(number), brokersFormat[broker_id])}
       </td>

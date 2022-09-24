@@ -11,7 +11,6 @@ export function isValueZero(value, index) {
 }
 
 export function splitUrl(url, index) {
-  console.log(url);
   const returnUrl = url
     .split(FilterKey[index])[1]
     .split('&')

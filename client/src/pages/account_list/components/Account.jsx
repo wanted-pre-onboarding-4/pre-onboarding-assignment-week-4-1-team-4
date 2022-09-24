@@ -20,6 +20,7 @@ const Account = ({ account }) => {
   const rate = ((+account.assets - +account.payments) / (+account.payments * 100))
     .toString()
     .slice(0, 7);
+
   return (
     <>
       <tbody
@@ -31,10 +32,12 @@ const Account = ({ account }) => {
         </tr>
         <tr className="justify-center flex flex-1">
           <td>
-            {account.number
-              .split('')
-              .map((char, idx) => (idx > 1 && idx < account.number.length - 2 ? '*' : char))
-              .join('')}
+            <Link to={`/accounts/${account.id}`}>
+              {account.number
+                .split('')
+                .map((char, idx) => (idx > 1 && idx < account.number.length - 2 ? '*' : char))
+                .join('')}
+            </Link>
           </td>
         </tr>
         <tr className="justify-center flex flex-1">

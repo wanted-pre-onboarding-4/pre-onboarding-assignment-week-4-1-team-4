@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getAccount, getUser } from '../../services/account';
+import { getAccountById, getUser } from '../../services/account';
 import { useLocation } from 'react-router-dom';
 import accountStatus from '../../data/accountStatus.json';
 import brokerFormat from '../../data/brokerFormat.json';
@@ -12,10 +12,6 @@ function AccountDetail() {
   const [user, setUser] = useState({});
   const create_date = new Date(account.created_at);
   const update_date = new Date(account.updated_at);
-
-  const getKeyByValue = (obj, value) => {
-    return Object.keys(obj).find(key => obj[key] === value);
-  };
 
   const accountBrokerFormat = (accountNumber, brokerId) => {
     if (brokerId === undefined) {
@@ -37,7 +33,7 @@ function AccountDetail() {
 
   useEffect(() => {
     const getAccountDetail = async () => {
-      const resAccount = await getAccount(id);
+      const resAccount = await getAccountById(id);
       const resUser = await getUser(resAccount.data.user_id);
       setAccount(resAccount.data);
       setUser(resUser.data);
@@ -69,10 +65,9 @@ function AccountDetail() {
             <td className="w-60 border-b-2 border-r-2 text-center bg-yellow-100 font-bold text-2xl">
               계좌 상태
             </td>
-            <td className="w-60 border-b-2 text-center text-2xl">{`${getKeyByValue(
-              accountStatus,
-              account.status
-            )}`}</td>
+            <td className="w-60 border-b-2 text-center text-2xl">
+              {accountStatus[account.status]}
+            </td>
           </tr>
           <tr className="h-20">
             <td className="w-60 border-b-2 border-r-2 text-center bg-yellow-100 font-bold text-2xl">

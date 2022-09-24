@@ -2,6 +2,7 @@ import React from 'react';
 import { createLink } from '../utils/makeLink';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { pageReturn } from '../utils/funcs';
+
 const Select = ({ name, options, setFunction, index, setPage }) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -9,6 +10,7 @@ const Select = ({ name, options, setFunction, index, setPage }) => {
   const optionClickHandler = e => {
     if (index === 0 || index === 1 || index === 2 || index === 6) {
       setFunction(e.target.value);
+
       const link = createLink(e.target.value, index, location, navigate);
       pageReturn(link, navigate);
     } else {
@@ -17,9 +19,10 @@ const Select = ({ name, options, setFunction, index, setPage }) => {
       pageReturn(link, navigate);
     }
   };
+
   return (
     <select className="p-1 rounded-sm w-38 outline-none" onChange={e => optionClickHandler(e)}>
-      <option disabled="disabled" selected="selected" value="">
+      <option disabled="disabled" value="">
         {name}
       </option>
       {Object.entries(options).map(option => (
