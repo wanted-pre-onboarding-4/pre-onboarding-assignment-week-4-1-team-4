@@ -30,7 +30,7 @@ const Account = ({ account }) => {
         <tr className="justify-center flex flex-1">
           <td>{brokers[account.broker_id]}</td>
         </tr>
-        <tr className="justify-center flex flex-1">
+        <tr className="justify-center flex flex-1 hover:underline">
           <td>
             <Link to={`/accounts/${account.id}`}>
               {account.number
@@ -40,7 +40,7 @@ const Account = ({ account }) => {
             </Link>
           </td>
         </tr>
-        <tr className="justify-center flex flex-1">
+        <tr className="justify-center flex flex-1 hover:underline">
           <td>
             <Link to={`/users/${account.user_id}`}>{data.data?.name}</Link>
           </td>

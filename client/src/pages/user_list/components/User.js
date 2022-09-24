@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { getUserAccounts } from '../../../services/account';
 import { getUserSettingDetail } from '../../../utils/getUserSettingDetail';
 function User({ user }) {
@@ -22,6 +23,7 @@ function User({ user }) {
     };
     getUserSettingData();
   }, [user]);
+
   function FormatDate(date, index) {
     date = date.split('-');
     if (index === 0) {
@@ -40,12 +42,15 @@ function User({ user }) {
       '분'
     );
   }
+
   return (
     <>
       {userAccounts.length !== 0 && (
         <tbody className="flex items-center justify-between w-full bg-white py-2 text-sm">
-          <tr className="justify-center flex flex-1">
-            <td>{name}</td>
+          <tr className="justify-center flex flex-1 hover:underline">
+            <Link to={`/users/${id}`}>
+              <td>{name}</td>
+            </Link>
           </tr>
           <tr className="justify-center flex flex-1">
             <td>{userAccounts.length}</td>
