@@ -13,7 +13,7 @@ const Select = ({ name, options, setFunction, index, setPage }) => {
       const link = createLink(e.target.value, index, location, navigate);
       pageReturn(link, navigate);
     } else {
-      // setPage(1);
+      setPage(1);
       setFunction(options[e.target.value]);
       const link = createLink(options[e.target.value], index, location, navigate);
       pageReturn(link, navigate);

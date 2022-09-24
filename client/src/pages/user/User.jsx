@@ -81,7 +81,7 @@ export default function User() {
         <section className="flex flex-col w-full mb-10">
           <h1 className="flex items-center text-2xl font-semibold mb-5">
             <div className="mr-3">사용자 정보</div>
-            <BiEditAlt onClick={toggleModal} />
+            <BiEditAlt onClick={toggleModal} className="cursor-pointer" />
           </h1>
           <UserInfo userData={{ ...userInfo, ...userSettingInfo }} />
         </section>

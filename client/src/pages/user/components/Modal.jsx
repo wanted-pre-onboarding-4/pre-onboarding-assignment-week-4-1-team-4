@@ -18,7 +18,7 @@ const Modal = ({ children }) => {
   return (
     <Portal>
       <div className="h-full w-full flex items-center justify-center fixed left-0 top-0 text-center bg-[#00000099]">
-        <div className="h-[600px] w-[600px] overflow-scroll bg-white">
+        <div className="h-auto w-[600px]  bg-white">
           <div>{children}</div>
         </div>
       </div>

@@ -14,6 +14,8 @@ function UserList() {
   const [page, setPage] = useState(+location.search.split('&')[0].split('page=')[1]);
   const [limit, setLimit] = useState(10);
   const [total, setTotal] = useState();
+  const [isActive, setIsActive] = useState(false);
+  const [isStaff, setIsStaff] = useState(false);
 
   const getUserList = async url => {
     const res = await getUserByURL(url || location.search);
@@ -23,14 +25,14 @@ function UserList() {
 
   useEffect(() => {
     getUserList();
-  }, [limit, page]);
+  }, [limit, page, isActive, isStaff]);
 
   return (
     <>
       <div className="px-4 py-8 w-screen bg-gray-100 min-w-[1500px] ">
         <div className="flex items-center gap-x-10 mb-4">
           <div className="space-x-2">
-            {/* <Select
+            <Select
               name="계좌 활성화"
               options={{ 0: '전체', true: '활성화', false: '비활성화' }}
               setFunction={setIsActive}
@@ -43,8 +45,7 @@ function UserList() {
               index={6}
               setFunction={setIsStaff}
               setPage={setPage}
-            /> */}
-
+            />
             <Select
               name="페이지 당 게시물"
               options={{ 0: '5', 1: '10', 2: '15', 3: '20', 4: '50' }}
