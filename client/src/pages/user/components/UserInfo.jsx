@@ -1,4 +1,5 @@
 import { getDate, getDateAndTime, maskingPhoneNumber, getFullAddress } from '../../../utils/funcs';
+
 export default function UserInfo({ userData }) {
   const {
     photo,

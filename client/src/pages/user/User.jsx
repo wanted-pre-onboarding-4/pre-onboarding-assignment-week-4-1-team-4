@@ -3,6 +3,10 @@ import { getUser, getAccounts, getUserSetting } from '../../services/account';
 import UserInfo from './components/UserInfo';
 import UserAccountList from './components/UserAccountList';
 import { useQuery } from 'react-query';
+import { BiEditAlt } from 'react-icons/bi';
+import { useState } from 'react';
+import Modal from './components/Modal';
+import UpdateUser from './components/UpdateUser';
 
 export default function User() {
   const { user_id } = useParams();
@@ -63,16 +67,32 @@ export default function User() {
     ...userSettingInfo,
   };
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalOpen(prev => !prev);
+  };
+
   return (
-    <div className="flex flex-col items-center w-full bg-slate-100 p-10">
-      <section className="flex flex-col w-full mb-10">
-        <h1 className="text-2xl font-semibold mb-5">사용자 정보</h1>
-        <UserInfo userData={userData} />
-      </section>
-      <section className="flex flex-col w-full">
-        <h1 className="text-2xl font-semibold mb-5">사용자 계좌 목록</h1>
-        <UserAccountList userAccounts={userAccounts} />
-      </section>
-    </div>
+    <>
+      {isModalOpen && (
+        <Modal>
+          <UpdateUser userInfo={userInfo} toggleModal={toggleModal} />
+        </Modal>
+      )}
+      <div className="flex flex-col items-center w-full bg-slate-100 p-10">
+        <section className="flex flex-col w-full mb-10">
+          <h1 className="flex items-center text-2xl font-semibold mb-5">
+            <div className="mr-3">사용자 정보</div>
+            <BiEditAlt onClick={toggleModal} />
+          </h1>
+          <UserInfo userData={userData} />
+        </section>
+        <section className="flex flex-col w-full">
+          <h1 className="text-2xl font-semibold mb-5">사용자 계좌 목록</h1>
+          <UserAccountList userAccounts={userAccounts} />
+        </section>
+      </div>
+    </>
   );
 }

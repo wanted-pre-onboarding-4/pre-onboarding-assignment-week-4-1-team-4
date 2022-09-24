@@ -22,3 +22,11 @@ export const getUser = userId => {
 export const getUserByURL = url => {
   return http.get(`/users${url}`);
 };
+
+export const putUser = (userId, config) => {
+  return http.put(`/users/${userId}`, config);
+};
+
+export const deleteUser = userId => {
+  return http.delete(`/users/${userId}`);
+};

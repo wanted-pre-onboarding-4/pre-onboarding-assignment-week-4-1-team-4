@@ -1614,6 +1614,13 @@
       "email": "test@gmail.com",
       "password": "$2a$10$WTZofg5dKj8Rs1AywPjNPuTtiIpfoeVf8llORUBRJnjddbjfFnLRG",
       "id": 103
+    },
+    {
+      "email": "user@user",
+      "password": "$2a$10$wUWtvlGuwx99mXzLVL/em.a9zqyz29fRKOO41l6XwqI7RvjL31yZK",
+      "id": 104,
+      "name": "eee",
+      "updated_at": "2022-09-24T10:09:36.085Z"
     }
   ],
   "userSetting": [
