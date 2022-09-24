@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BiSearchAlt } from 'react-icons/bi';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { CreateLink } from '../utils/makeLink';
+import { createLink } from '../utils/makeLink';
 import { pageReturn } from '../utils/funcs';
 
 const Search = ({ getAccountList }) => {
@@ -11,7 +11,7 @@ const Search = ({ getAccountList }) => {
 
   const searchHandler = e => {
     e.preventDefault();
-    let url = CreateLink(enteredSearch, 5, location, navigate);
+    let url = createLink(enteredSearch, 5, location, navigate);
     url = pageReturn(url, navigate);
     getAccountList(url);
   };

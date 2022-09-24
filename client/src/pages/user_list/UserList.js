@@ -1,32 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { getUserByURL } from '../../services/account';
 import { useLocation } from 'react-router-dom';
-import User from './components/User';
 import Pagenation from '../../components/Pagenation';
 import Select from '../../components/Select';
 import Search from '../../components/Search';
+import { dataInfo } from '../../utils/dataInfo';
 function UserList() {
   const location = useLocation();
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [total, setTotal] = useState();
-  const [staff, setStaff] = useState();
-  const [isActive, setIsActive] = useState();
-
-  const userInfo = users => {
-    if (total === '0') {
-      return (
-        <div className="text-center mt-3 mb-12 text-3xl  font-semibold">데이터가 없습니다</div>
-      );
-    }
-
-    if (users.length === 0) {
-      return <div className="text-center mt-3 mb-12 text-3xl  font-semibold">Loading....</div>;
-    }
-
-    return users.map(user => <User user={user} key={user.uuid} />);
-  };
 
   const getUserList = async url => {
     const res = await getUserByURL(url || location.search);
@@ -35,7 +19,7 @@ function UserList() {
   };
   useEffect(() => {
     getUserList();
-  }, [limit, isActive, page, staff]);
+  }, [limit, page]);
 
   return (
     <>
@@ -82,7 +66,7 @@ function UserList() {
               <th className="justify-center flex flex-1">가입일</th>
             </tr>
           </thead>
-          {users && userInfo(users)}
+          {users && dataInfo(users, total, 0)}
         </table>
         {total !== undefined && (
           <Pagenation total={total} limit={limit} page={page} setPage={setPage} />

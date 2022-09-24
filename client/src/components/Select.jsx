@@ -1,5 +1,5 @@
 import React from 'react';
-import { CreateLink } from '../utils/makeLink';
+import { createLink } from '../utils/makeLink';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { pageReturn } from '../utils/funcs';
 const Select = ({ name, options, setFunction, index, setPage }) => {
@@ -9,11 +9,11 @@ const Select = ({ name, options, setFunction, index, setPage }) => {
   const optionClickHandler = e => {
     if (index === 0 || index === 1 || index === 2 || index === 6) {
       setFunction(e.target.value);
-      const link = CreateLink(e.target.value, index, location, navigate);
+      const link = createLink(e.target.value, index, location, navigate);
       pageReturn(link, navigate);
     } else {
       setFunction(options[e.target.value]);
-      const link = CreateLink(options[e.target.value], index, location, navigate);
+      const link = createLink(options[e.target.value], index, location, navigate);
       pageReturn(link, navigate);
     }
   };

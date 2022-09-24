@@ -6,7 +6,7 @@ function User({ user }) {
     user;
   const [userAccounts, setUserAccounts] = useState([]);
   const [userSetting, setUserSetting] = useState({});
-
+  console.log(user);
   useEffect(() => {
     const getUserData = async () => {
       const res = await getUserAccounts(id);

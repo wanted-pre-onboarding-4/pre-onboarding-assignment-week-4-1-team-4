@@ -3,10 +3,10 @@ import Search from '../../components/Search';
 import { getAccounts } from '../../services/account';
 import { useLocation } from 'react-router-dom';
 import brokers from '../../data/brokers.json';
-import Account from './components/Account';
 import Select from '../../components/Select';
 import accountStatus from '../../data/accountStatus.json';
 import Pagenation from '../../components/Pagenation';
+import { dataInfo } from '../../utils/dataInfo';
 const AccountList = () => {
   const [accounts, setAccounts] = useState([]);
   const [page, setPage] = useState(1);
@@ -29,19 +29,6 @@ const AccountList = () => {
     getAccountList();
     console.log('실행');
   }, [limit, isActive, brokerId, status, page, search]);
-
-  const accountInfo = accounts => {
-    if (total === '0') {
-      return (
-        <div className="text-center mt-3 mb-12 text-3xl  font-semibold">데이터가 없습니다</div>
-      );
-    }
-
-    if (accounts.length === 0) {
-      return <div className="text-center mt-3 mb-12 text-3xl  font-semibold">Loading....</div>;
-    }
-    return accounts.map(account => <Account key={account.uuid} account={account} />);
-  };
 
   return (
     <>
@@ -99,7 +86,7 @@ const AccountList = () => {
               <th className="justify-center flex flex-1">계좌개설일</th>
             </tr>
           </thead>
-          {accountInfo(accounts, Account)}
+          {accounts && dataInfo(accounts, total, 1)}
         </table>
         {total !== undefined && (
           <Pagenation total={total} limit={limit} page={page} setPage={setPage} />
