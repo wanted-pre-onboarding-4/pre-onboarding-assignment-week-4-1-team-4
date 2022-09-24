@@ -22,9 +22,6 @@ function AccountDetail() {
       return '';
     }
     const format = brokerFormat[brokerId];
-    console.log(brokerFormat);
-    console.log(brokerId);
-    console.log(format);
     let resultAccount = '';
     let j = 0;
     for (let i = 0; i < format.length; i++) {
@@ -49,9 +46,9 @@ function AccountDetail() {
   }, []);
 
   return (
-    <div className="w-full flex justify-center align-center">
-      <table className="border-2">
-        <tbody className="h-full w-full border-2">
+    <div className="w-full flex justify-center items-center h-5/6">
+      <table>
+        <tbody className="h-5/6 w-full border-2">
           <tr className="h-20">
             <td className="w-60 border-b-2 border-r-2 text-center bg-yellow-100 font-bold text-2xl">
               이름
