@@ -69,7 +69,8 @@ export default function UpdateUser({ refetch, userInfo, toggleModal }) {
   };
 
   return (
-    <form onSubmit={updateHandler} className="flex flex-col gap-y-4 p-6 pt-4">
+    <form onSubmit={updateHandler} className="flex flex-col gap-y-4 p-6">
+      <h1 className="font-semibold text-2xl">사용자 정보수정</h1>
       <div className="mb-4">
         <label className={`${style.label}`} />
         <BsPerson className={`${style.svg}`} />
@@ -137,7 +138,7 @@ export default function UpdateUser({ refetch, userInfo, toggleModal }) {
 
       <button
         onClick={toggleModal}
-        className="flex items-center justify-center space-x-2 w-full text-lg border-solid border-[1px] p-2 rounded text-white bg-gray-900 duration-200 disabled:text-gray-400 disabled:bg-gray-100"
+        className="flex items-center justify-center space-x-2 w-full text-lg border-solid border-[1px] p-2 rounded text-gray-500  bg-gray-200"
       >
         <span>취소</span>
       </button>
