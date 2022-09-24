@@ -2,17 +2,26 @@ import React from 'react';
 import { CreateLink } from '../utils/makeLink';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-
-const Select = ({ name, options, setFunction, index }) => {
+const Select = ({ name, options, setFunction, index, setPage }) => {
   const location = useLocation();
   const navigate = useNavigate();
+  const params = new URLSearchParams(location.search);
+  const PageReturn = link => {
+    let tempLink = link;
+    console.log(tempLink.split('&')[0].split('=')[1]);
+    tempLink.split('&')[0].split('=')[1] = 1;
+    console.log(tempLink.split('&')[0].split('=')[1]);
+  };
+
   const optionClickHandler = e => {
     if (index === 0 || index === 1 || index === 2) {
       setFunction(e.target.value);
-      CreateLink(e.target.value, index, location, navigate);
+      const link = CreateLink(e.target.value, index, location, navigate);
+      PageReturn(link);
     } else {
       setFunction(options[e.target.value]);
-      CreateLink(options[e.target.value], index, location, navigate);
+      const link = CreateLink(options[e.target.value], index, location, navigate);
+      PageReturn(link);
     }
   };
   return (

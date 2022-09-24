@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { BiSearchAlt } from 'react-icons/bi';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { joinarray } from '../utils/makeLink';
+import { CreateLink } from '../utils/makeLink';
+
 const Search = ({ getAccountList }) => {
   const [enteredSearch, setEnteredSearch] = useState('');
   const navigate = useNavigate();
@@ -9,6 +11,8 @@ const Search = ({ getAccountList }) => {
 
   const searchHandler = e => {
     e.preventDefault();
+    CreateLink(e.target.value, location, navigate);
+
     if (location.search.includes('q=')) {
       const returnUrl = location.search
         .split('q=')[1]

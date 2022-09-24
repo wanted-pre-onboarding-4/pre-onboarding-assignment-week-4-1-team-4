@@ -12,7 +12,6 @@ const Account = ({ account }) => {
   useEffect(() => {
     const getUserData = async () => {
       const data = await getUser(account.user_id);
-      console.log(data);
       setData(data);
     };
     getUserData();

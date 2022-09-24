@@ -1,6 +1,7 @@
 import http from '../utils/http-common';
 
 export const getAccounts = url => {
+  console.log(`/accounts${url}`);
   return http.get(`/accounts${url}`);
 };
 export const getUserAccounts = id => {
