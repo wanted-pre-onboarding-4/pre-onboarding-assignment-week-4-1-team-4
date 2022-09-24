@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 
 const instance = axios.create({
-  baseURL: '',
+  baseURL: 'http://localhost:4000',
   timeout: 2000,
 });
 

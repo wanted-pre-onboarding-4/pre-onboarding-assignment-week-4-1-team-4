@@ -1,7 +1,19 @@
 import http from '../utils/http-common';
 
-export const getAccounts = (page, limit) => {
-  return http.get(`/accounts?_page=${page}&_limit=${limit}`);
+export const getAccounts = url => {
+  console.log(url);
+  return http.get(`/accounts${url}`);
+};
+export const getUserAccounts = id => {
+  return http.get(`/accounts?user_id=${id}`);
+};
+
+export const getUserSetting = () => {
+  return http.get(`/userSetting`);
+};
+
+export const getUsers = () => {
+  return http.get(`/users`);
 };
 
 export const getUser = userId => {
@@ -10,4 +22,16 @@ export const getUser = userId => {
 
 export const getAccount = userId => {
   return http.get(`${userId}`);
+};
+export const getUserByURL = url => {
+  console.log(url);
+  return http.get(`/users${url}`);
+};
+
+export const putUser = (userId, config) => {
+  return http.put(`/users/${userId}`, config);
+};
+
+export const deleteUser = userId => {
+  return http.delete(`/users/${userId}`);
 };
