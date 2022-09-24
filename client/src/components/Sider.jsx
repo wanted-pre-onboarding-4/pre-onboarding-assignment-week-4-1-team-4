@@ -10,6 +10,12 @@ const Sider = () => {
 
   const { onLogout } = authStore();
 
+  const onClickLogout = () => {
+    if (window.confirm('로그아웃 하시겠습니까?')) {
+      return onLogout();
+    } else return;
+  };
+
   return (
     <div className="w-52 h-screen  fixed left-0 bottom-0 bg-neutral-800 border-t-4 border-blue-600">
       <h1 className="text-3xl font-extrabold text-center text-white px-5 py-4 pr-7">PREFACE</h1>
@@ -43,8 +49,8 @@ const Sider = () => {
         </li>
       </ul>
       <button
-        onClick={onLogout}
-        className="flex items-center px-8 space-x-2 py-4 text-gray-300  justify-between cursor-pointer hover:text-white ease-in duration-100 "
+        onClick={onClickLogout}
+        className="flex items-center px-8 space-x-2 py-4 text-gray-300  hover:text-white ease-linear duration-200"
       >
         <IoMdLogOut />
         <span>로그아웃</span>

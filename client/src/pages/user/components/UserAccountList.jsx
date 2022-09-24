@@ -6,10 +6,10 @@ export const style = {
   td: 'px-5 py-4 text-center border border-solid border-slate-200',
 };
 
-export default function UserAccountList({ accountList }) {
+export default function UserAccountList({ userAccounts }) {
   return (
     <>
-      {accountList && (
+      {userAccounts && (
         <table className={`${style.border} border-collapse`}>
           <thead>
             <tr>
@@ -24,7 +24,7 @@ export default function UserAccountList({ accountList }) {
             </tr>
           </thead>
           <tbody className="bg-white">
-            {accountList.map(account => (
+            {userAccounts.map(account => (
               <UserAccountItem key={account.id} account={account} />
             ))}
           </tbody>
